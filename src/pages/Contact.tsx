@@ -1,4 +1,5 @@
-import { FormEvent, useMemo, useState } from 'react';
+import type { FormEvent } from 'react';
+import { useMemo, useState } from 'react';
 import { useI18n } from '../i18n/I18nProvider';
 import { resources, get } from '../i18n/translations';
 
