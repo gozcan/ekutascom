@@ -152,9 +152,9 @@ export default function Hero() {
       <motion.button
         type="button"
         onClick={onScrollHint}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full bg-white/5 p-2 ring-1 ring-white/15 backdrop-blur hover:bg-white/10 focus:outline-none"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full bg-white/5 p-2 ring-2 ring-amber-300 backdrop-blur hover:bg-white/10 focus:outline-none"
         aria-label="Aşağı kaydır"
-        initial={{ opacity: 0 }}
+        initial={{ opacity: 0.3 }}
         animate={{ opacity: 1, y: [0, 6, 0] }}
         transition={{
           delay: 0.6,
