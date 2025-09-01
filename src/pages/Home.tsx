@@ -174,7 +174,7 @@ function AboutFigure() {
 function KpiRow({ items }: { items: Array<{ value: string; label: string }> }) {
   return (
     <FMReveal>
-      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-y-6 sm:grid-cols-3 md:grid-cols-6 md:divide-x md:divide-slate-200">
+      <div className="mx-auto grid max-w-5xl grid-cols-2 gap-y-6 sm:grid-cols-3 md:grid-cols-5 md:divide-x md:divide-slate-200">
         {items.map((k, i) => (
           <motion.div
             key={i}

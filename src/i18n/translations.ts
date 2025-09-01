@@ -28,7 +28,7 @@ export const resources = {
         'Konut, ticari ve endüstriyel projelerde uçtan uca inşaat çözümleri.',
       imageAlt: 'Ekutaş İnşaat şantiyesi ve saha çalışmaları',
       kpis: {
-        yearsValue: '15+',
+        yearsValue: '80+',
         yearsLabel: 'Yıl',
         projectsValue: '120+',
         projectsLabel: 'Proje',
@@ -128,7 +128,6 @@ export const resources = {
         items: [
           { value: '6', label: 'Aktif Şantiye' },
           { value: '40+', label: 'Ekipman / Araç' },
-          { value: '0', label: 'Kaza (HSE)' },
         ],
       },
     },
@@ -334,7 +333,7 @@ export const resources = {
         'End-to-end construction solutions for residential, commercial, and industrial projects.',
       imageAlt: 'Ekutaş Construction site and field operations',
       kpis: {
-        yearsValue: '15+',
+        yearsValue: '80+',
         yearsLabel: 'Years',
         projectsValue: '120+',
         projectsLabel: 'Projects',
@@ -433,7 +432,6 @@ export const resources = {
         items: [
           { value: '6', label: 'Active Sites' },
           { value: '40+', label: 'Equipment / Vehicles' },
-          { value: '0', label: 'Incidents (HSE)' },
         ],
       },
     },
