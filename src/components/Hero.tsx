@@ -69,7 +69,7 @@ export default function Hero() {
                   src="/images/hero.jpg"
                   alt={t('hero.imageAlt')}
                   loading="eager"
-                  fetchpriority="high"
+                  fetchPriority="high"
                   decoding="async"
                   sizes="(min-width: 768px) 50vw, 100vw"
                   onError={() => setBroken(true)}
