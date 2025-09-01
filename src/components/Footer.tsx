@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useI18n } from '../i18n/I18nProvider';
 
 export default function Footer() {
