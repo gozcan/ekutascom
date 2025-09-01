@@ -1,89 +1,211 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+  animate,
+} from 'framer-motion';
 import { useI18n } from '../i18n/I18nProvider';
+import { resources, get } from '../i18n/translations';
 
 export default function Hero() {
-  const { t } = useI18n();
-  const [broken, setBroken] = useState(false);
+  const { t, lang } = useI18n();
+  const heroKpis = (get(resources[lang], 'hero.kpis') as any) || {};
+
+  const kpis: Array<{ value: string; label: string }> = useMemo(
+    () =>
+      [
+        {
+          value: String(heroKpis.yearsValue ?? '0'),
+          label: String(heroKpis.yearsLabel ?? ''),
+        },
+        {
+          value: String(heroKpis.projectsValue ?? '0'),
+          label: String(heroKpis.projectsLabel ?? ''),
+        },
+        {
+          value: String(heroKpis.areaValue ?? '0'),
+          label: String(heroKpis.areaLabel ?? ''),
+        },
+      ].filter(Boolean),
+    [heroKpis]
+  );
+
+  // Parallax
+  const reduce = useReducedMotion();
+  const imgWrapRef = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: imgWrapRef,
+    offset: ['start end', 'end start'],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -80]); // px
+  const scale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 1.2]);
+
+  // Görsel fade-in (yüklenene kadar görünmesin)
+  const [imgReady, setImgReady] = useState(false);
+
+  const onScrollHint = () => {
+    const vh = window.innerHeight || 600;
+    window.scrollTo({ top: vh * 0.75, behavior: 'smooth' });
+  };
 
   return (
-    <section className="bg-gradient-to-b from-white to-slate-50">
-      <div className="mx-auto max-w-6xl px-4 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
-        {/* Sol: başlık + kısa metin + KPI'lar */}
-        <div>
-          <h1 className="font-heading text-slate-900 text-4xl md:text-6xl font-extrabold leading-tight">
-            {t('hero.title')}
-          </h1>
-          <p className="mt-5 text-lg md:text-xl text-slate-600 max-w-2xl">
-            {t('hero.subtitle')}
-          </p>
-
-          {/* KPI şeridi */}
-          <div className="mt-8 grid grid-cols-3 gap-6 max-w-md">
-            <div className="rounded-xl bg-white ring-1 ring-black/5 shadow-sm p-4 text-center">
-              <div className="text-2xl md:text-3xl font-extrabold text-slate-900">
-                {t('hero.kpis.yearsValue')}
-              </div>
-              <div className="mt-1 text-xs uppercase tracking-wide text-amber-700">
-                {t('hero.kpis.yearsLabel')}
-              </div>
-            </div>
-            <div className="rounded-xl bg-white ring-1 ring-black/5 shadow-sm p-4 text-center">
-              <div className="text-2xl md:text-3xl font-extrabold text-slate-900">
-                {t('hero.kpis.projectsValue')}
-              </div>
-              <div className="mt-1 text-xs uppercase tracking-wide text-amber-700">
-                {t('hero.kpis.projectsLabel')}
-              </div>
-            </div>
-            <div className="rounded-xl bg-white ring-1 ring-black/5 shadow-sm p-4 text-center">
-              <div className="text-2xl md:text-3xl font-extrabold text-slate-900">
-                {t('hero.kpis.areaValue')}
-              </div>
-              <div className="mt-1 text-xs uppercase tracking-wide text-amber-700">
-                {t('hero.kpis.areaLabel')}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Sağ: görsel kart kompozisyonu (aynı) */}
-        <div className="relative">
-          <div
-            aria-hidden="true"
-            className="absolute -top-6 -right-6 h-40 w-40 rotate-6 rounded-2xl bg-amber-500/80 blur-[2px] md:h-48 md:w-48"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute -bottom-4 -left-4 h-10 w-32 -rotate-6 rounded-full bg-amber-500/20"
-          />
-
-          <div className="relative overflow-hidden rounded-3xl bg-white shadow-2xl ring-1 ring-black/10">
-            {/* Oran koruyucu */}
-            <div className="aspect-[5/4] md:aspect-[16/10] bg-gradient-to-tr from-slate-200 via-slate-100 to-white" />
-            {!broken && (
-              <picture>
-                {/* İleride avif/webp varyantların olduğunda bu source'ları ekle */}
-                {/* <source srcSet="/images/hero.avif" type="image/avif" /> */}
-                {/* <source srcSet="/images/hero.webp" type="image/webp" /> */}
-                <img
-                  src="/images/hero.jpg"
-                  alt={t('hero.imageAlt')}
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="async"
-                  sizes="(min-width: 768px) 50vw, 100vw"
-                  onError={() => setBroken(true)}
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-              </picture>
-            )}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/0 via-black/0 to-white/10"
+    <section className="relative isolate overflow-hidden bg-slate-900 text-white h-[60vh] min-h-[400px] md:h-[75vh]">
+      {/* Arka plan: sağ görsel + sol karartma panel */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        {/* Görsel konteyneri */}
+        <div
+          ref={imgWrapRef}
+          className="absolute inset-0"
+        >
+          {/* oran placeholder */}
+          <div className="absolute inset-0 bg-slate-900" />
+          <motion.picture
+            style={{ y, scale }}
+            className="absolute inset-0 h-full w-full"
+          >
+            <source
+              srcSet="/images/hero.avif"
+              type="image/avif"
             />
-          </div>
+            <source
+              srcSet="/images/hero.webp"
+              type="image/webp"
+            />
+            <motion.img
+              src="/images/hero.jpg"
+              alt={t('hero.title')}
+              loading="lazy"
+              decoding="async"
+              onLoad={() => setImgReady(true)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: imgReady ? 1 : 0 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="h-full w-full object-bottom"
+            />
+          </motion.picture>
         </div>
       </div>
+
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 py-14 md:grid-cols-2 md:py-24">
+        {/* Sol: Başlık + alt metin + KPI’lar (hep beyaz) */}
+        <div className="relative z-10 bg-black/10 p-4 backdrop-blur-sm md:p-8 lg:p-12 rounded-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          ></motion.div>
+
+          <motion.h1
+            className="mt-4 font-heading text-3xl font-bold  text-amber-100 md:text-5xl"
+            style={{ textShadow: '0 1px 1px rgba(0,0,0,.25)' }}
+          >
+            {t('hero.title')}
+          </motion.h1>
+
+          <motion.p
+            className="mt-4 max-w-xl text-base text-amber-300 md:text-lg"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.16,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            {t('hero.subtitle')}
+          </motion.p>
+
+          {/* KPI Row */}
+          <motion.div
+            className="mt-8 grid max-w-xl grid-cols-3 gap-4 md:gap-6"
+            initial="hidden"
+            animate="show"
+            variants={{
+              hidden: {},
+              show: { transition: { staggerChildren: 0.06 } },
+            }}
+          >
+            {kpis.map((k, i) => (
+              <motion.div
+                key={i}
+                className="text-left"
+                variants={{
+                  hidden: { opacity: 0, y: 10 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+                }}
+              >
+                <div className="text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+                  <Counter value={k.value} />
+                </div>
+                <div className="mt-1 text-[11px] uppercase tracking-wider text-amber-300">
+                  {k.label}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Aşağı kaydır ipucu */}
+      <motion.button
+        type="button"
+        onClick={onScrollHint}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 rounded-full bg-white/5 p-2 ring-1 ring-white/15 backdrop-blur hover:bg-white/10 focus:outline-none"
+        aria-label="Aşağı kaydır"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [0, 6, 0] }}
+        transition={{
+          delay: 0.6,
+          duration: 2.2,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      >
+        <svg
+          viewBox="0 0 24 24"
+          className="h-5 w-5 text-white"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.75"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </motion.button>
     </section>
+  );
+}
+
+/* ----------- sayısal counter (değişmedi) ----------- */
+function Counter({ value }: { value: string }) {
+  const reduce = useReducedMotion();
+  const m = String(value).match(/^(\d+)(.*)$/);
+  if (!m) return <span>{value}</span>;
+  const target = parseInt(m[1], 10);
+  const suffix = m[2] ?? '';
+
+  const spanRef = useRef<HTMLSpanElement | null>(null);
+  useEffect(() => {
+    if (reduce || !spanRef.current) {
+      if (spanRef.current) spanRef.current.textContent = `${target}${suffix}`;
+      return;
+    }
+    const controls = animate(0, target, {
+      duration: 1,
+      ease: [0.22, 1, 0.36, 1],
+      onUpdate: (latest) => {
+        if (spanRef.current)
+          spanRef.current.textContent = `${Math.round(latest)}${suffix}`;
+      },
+    });
+    return () => controls.stop();
+  }, [target, suffix, reduce]);
+
+  return (
+    <span ref={spanRef}>{reduce ? `${target}${suffix}` : `0${suffix}`}</span>
   );
 }

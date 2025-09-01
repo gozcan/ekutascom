@@ -6,10 +6,21 @@ import Services from './pages/Services';
 import Contact from './pages/Contact';
 import Projects from './pages/Projects'; // ← eklendi
 import NotFound from './pages/NotFound';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    // anında tepeye al; istersen behavior: 'smooth' yapabilirsin
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
+  }, [pathname]);
+  return null;
+}
 export default function App() {
   return (
     <MainLayout>
+      <ScrollToTop />
       <Routes>
         <Route
           path="/"

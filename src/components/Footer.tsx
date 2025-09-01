@@ -15,15 +15,7 @@ export default function Footer() {
   return (
     <footer className="border-t bg-white">
       <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          {/* Sol: marka */}
-          <Link
-            to="/"
-            className="text-base font-semibold text-gray-900"
-          >
-            {t('brand')}
-          </Link>
-
+        <div className="flex flex-col col-span-3 md:flex-row md:items-center md:justify-end gap-16">
           {/* Orta: hızlı menü */}
           <nav className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <NavLink
@@ -46,6 +38,12 @@ export default function Footer() {
               {t('nav.services')}
             </NavLink>
             <NavLink
+              to="/projects"
+              className={getLinkClass}
+            >
+              {t('nav.projects')}
+            </NavLink>
+            <NavLink
               to="/contact"
               className={getLinkClass}
             >
@@ -54,7 +52,7 @@ export default function Footer() {
           </nav>
 
           {/* Sağ: telif */}
-          <p className="text-sm text-gray-500">
+          <p className="text-xs text-amber-900">
             &copy; {year} {t('brand')}
           </p>
         </div>

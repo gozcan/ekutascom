@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useI18n } from '../i18n/I18nProvider';
 
+import { resources, get } from '../i18n/translations';
+
 function PhoneIcon() {
   return (
     <svg
@@ -39,7 +41,48 @@ function MailIcon() {
 export default function Header() {
   const [open, setOpen] = useState(false);
   const { t, lang, setLang } = useI18n();
+  // i18n kaynaklarını topla
 
+  type ContactInfo = {
+    pageTitle: string;
+    pageDesc?: string;
+    form: {
+      name: string;
+      email: string;
+      phone: string;
+      subject: string;
+      message: string;
+      submit: string;
+      success?: string;
+      error?: string;
+      validations?: {
+        required?: string;
+        email?: string;
+      };
+      placeholders?: {
+        name?: string;
+        email?: string;
+        phone?: string;
+        subject?: string;
+        message?: string;
+      };
+    };
+    info?: {
+      title?: string;
+      addressTitle?: string;
+      addressLines?: string[];
+      phoneTitle?: string;
+      phones?: string[];
+      emailTitle?: string;
+      emails?: string[];
+      hoursTitle?: string;
+      hours?: string[];
+      mapEmbedUrl?: string;
+    };
+  };
+  const data =
+    (get(resources[lang], 'contact') as ContactInfo) || ({} as ContactInfo);
+  const infoT = data.info;
   // Nav link stilleri
   const linkBase =
     'px-3 py-2 rounded-md text-sm font-medium transition-colors duration-150';
@@ -57,11 +100,11 @@ export default function Header() {
           <div className="hidden sm:flex items-center gap-5">
             <span className="inline-flex items-center gap-2 text-white/80">
               <PhoneIcon />
-              <span>{t('contactInfo.phone')}</span>
+              <span>{infoT?.phones}</span>
             </span>
             <span className="inline-flex items-center gap-2 text-white/80">
               <MailIcon />
-              <span>{t('contactInfo.email')}</span>
+              <span>{infoT?.emails}</span>
             </span>
           </div>
 
@@ -96,11 +139,11 @@ export default function Header() {
       {/* NAV BAR */}
       <div className="bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80 border-b">
         <div className="mx-auto max-w-6xl px-4">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-24">
             {/* Logo / Brand */}
             <Link
               to="/"
-              className="inline-flex items-center gap-3"
+              className="flex flex-row items-center gap-3"
             >
               <img
                 src="/logo.svg"
@@ -109,9 +152,9 @@ export default function Header() {
                 decoding="async"
                 loading="eager"
               />
-              <h1 className="font-light text-lg text-red-800 pt-8 self-end">
-                & Ekşioğlu
-              </h1>
+              <p className="font-light text-center text-[9pt] text-slate-600">
+                | Ekutaş Ekşioğlu Uluslararası Ticaret İnşaat A.Ş.
+              </p>
             </Link>
 
             {/* Desktop Nav */}
@@ -235,11 +278,11 @@ export default function Header() {
               <div className="mt-3 flex flex-col gap-2 text-sm text-slate-600">
                 <div className="inline-flex items-center gap-2">
                   <PhoneIcon />
-                  <span>{t('contactInfo.phone')}</span>
+                  <span>{infoT?.phones}</span>
                 </div>
                 <div className="inline-flex items-center gap-2">
                   <MailIcon />
-                  <span>{t('contactInfo.email')}</span>
+                  <span>{infoT?.emails}</span>
                 </div>
               </div>
             </div>

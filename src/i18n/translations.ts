@@ -2,7 +2,7 @@ export type Lang = 'tr' | 'en';
 
 export const resources = {
   tr: {
-    brand: 'Ekutaş İnşaat',
+    brand: 'Ekutaş Ekşioğlu Uluslararası Ticaret İnşaat A.Ş.',
     nav: {
       home: 'Ana Sayfa',
       about: 'Hakkımızda',
@@ -23,7 +23,7 @@ export const resources = {
 
     // Hero metinleri
     hero: {
-      title: 'Ekutaş İnşaat — güvenli ve sağlam yapılar',
+      title: 'Güvenli ve sağlam yapılar',
       subtitle:
         'Konut, ticari ve endüstriyel projelerde uçtan uca inşaat çözümleri.',
       imageAlt: 'Ekutaş İnşaat şantiyesi ve saha çalışmaları',
@@ -134,19 +134,74 @@ export const resources = {
     },
 
     // About sayfası
-    aboutPage: {
-      heading: 'Hakkımızda',
-      intro1:
-        'Ekutaş İnşaat; kaliteli, güvenli ve zamanında teslim projeler üretir.',
-      intro2: 'Şeffaf süreç yönetimi ve güçlü saha koordinasyonuyla çalışırız.',
-      valuesTitle: 'Değerlerimiz',
-      value1: 'Güvenilirlik',
-      value1Desc:
-        'Söz verdiğimiz işi, söz verdiğimiz tarihte ve kalitede teslim ederiz.',
-      value2: 'Şeffaflık',
-      value2Desc: 'Süreç, kapsam ve maliyetlerde net, izlenebilir iletişim.',
-      value3: 'İş Güvenliği',
-      value3Desc: 'Önce insan: sahada mevzuata uygun güvenlik ve denetim.',
+    about: {
+      heroTitle: 'Hakkımızda',
+      heroSubtitle:
+        'Ekutaş Ekşioğlu Uluslararası Ticaret İnşaat A.Ş. – Güvenden Yapılar Yükselir.',
+      who: {
+        title: 'Biz Kimiz?',
+        paragraphs: [
+          'Temelleri 1937 yılında atılan Ekutaş, Türkiye’nin en köklü inşaat firmalarından biri olarak üç kuşağa yayılan tecrübesiyle sektörde güvenin ve kalitenin simgesi haline gelmiştir. Aile şirketi yapısını koruyarak büyüyen firmamız, ilk olarak Ekşioğlu İnşaat adıyla faaliyet göstermiş, 1983 yılında Ekşioğlu Holding’in iştiraki olarak Ekutaş Ekşioğlu Uluslararası Ticaret Müteahhitlik A.Ş. adını almıştır.',
+          '1980’li ve 1990’lı yıllarda yurtiçi projelerindeki başarıların ardından, Ekgüntaş ile birleşerek yurt dışında çeşitli projelere imza atılmış; altyapı, konut ve endüstriyel yapılar gibi birçok alanda uluslararası tecrübe kazanılmış ve grup şirketleri ile birlikte 20 milyar USD’yi aşan iş bitirme elde edilmiştir.',
+          'Birleşim sürecinin ardından kendi yoluna devam eden Ekutaş, bugün İstanbul merkezli projelere odaklanarak; başta konut ve ticari yapılar olmak üzere yaşam kalitesini artıran, estetik ve fonksiyonel yapılar üretmeye devam etmektedir.',
+          'Geçmişten gelen gücümüzle, geleceği inşa etmeye devam ediyoruz.',
+        ],
+      },
+      history: {
+        title: 'Kısa Tarihçe',
+        items: [
+          { label: '1937', text: 'Ekutaş’ın temelleri atıldı.' },
+          {
+            label: '1983',
+            text: 'Ekşioğlu Holding iştiraki; yeni unvan: Ekutaş Ekşioğlu Uluslararası Ticaret Müteahhitlik A.Ş.',
+          },
+          {
+            label: '1980–1990’lar',
+            text: 'Ekgüntaş ile birleşim; altyapı, konut, endüstriyel yapılar; 20+ milyar USD iş bitirme.',
+          },
+          {
+            label: 'Bugün',
+            text: 'İstanbul merkezli; konut ve ticari yapılarda estetik + fonksiyon odaklı üretim.',
+          },
+        ],
+      },
+      values: {
+        title: 'Değerlerimiz',
+        items: [
+          {
+            title: 'Güvenilirlik',
+            desc: '80 yılı aşkın süredir verdiğimiz sözleri tutmanın sorumluluğunu taşıyoruz.',
+          },
+          {
+            title: 'Kalite',
+            desc: 'Malzeme seçiminden işçiliğe kadar tüm süreçlerde yüksek standartları benimsiyoruz.',
+          },
+          {
+            title: 'Sürdürülebilirlik',
+            desc: 'Gelecek nesillere yaşanabilir yapılar bırakmak için çevre dostu çözümler üretiyoruz.',
+          },
+          {
+            title: 'Aile Kültürü',
+            desc: 'Kurucularımızdan aldığımız değerleri, çalışanlarımız ve iş ortaklarımızla büyütüyoruz.',
+          },
+        ],
+      },
+      vision: {
+        title: 'Vizyonumuz',
+        body: 'Türkiye’de ve dünyada; kalite, güven ve sürdürülebilirlik ilkeleriyle tanınan; yaşam alanları, altyapı ve ticari projelerde fark yaratan öncü bir inşaat markası olmak.',
+      },
+      mission: {
+        title: 'Misyonumuz',
+        bullets: [
+          'Güvenilirlikten ödün vermeden,',
+          'Yüksek mühendislik ve mimarlık standartlarında,',
+          'Çevreye duyarlı ve sürdürülebilir çözümlerle,',
+          'Estetik ve fonksiyonelliği bir araya getiren projeler üretmek.',
+        ],
+        footnote:
+          'Müşterilerimize, iş ortaklarımıza ve topluma değer katan yapılar inşa etmek en temel misyonumuzdur.',
+      },
+      closing: 'Ekutaş — Güvenden Yapılar Yükselir.',
     },
 
     // Services sayfası
@@ -174,36 +229,46 @@ export const resources = {
     },
 
     // Contact sayfası (form etiketleri ve doğrulama mesajları)
-    contactPage: {
-      metaTitle: 'İletişim | Ekutaş',
-      metaDesc: 'Ekutaş ile iletişime geçin.',
-      heading: 'İletişim',
-      name: 'Ad Soyad',
-      email: 'E-posta',
-      message: 'Mesajınız',
-      send: 'Gönder',
-      successTitle: 'Teşekkürler!',
-      successText: 'Mesajınızı aldık. En kısa sürede dönüş yapacağız.',
-      errors: {
-        nameRequired: 'Lütfen adınızı yazın.',
-        emailInvalid: 'Geçerli bir e-posta girin.',
-        messageRequired: 'Lütfen bir mesaj yazın.',
+    contact: {
+      pageTitle: 'İletişim',
+      pageDesc:
+        'Projeleriniz için bize ulaşın. Size en kısa sürede geri döneriz.',
+      form: {
+        name: 'Ad Soyad',
+        email: 'E-posta',
+        phone: 'Telefon',
+        subject: 'Konu',
+        message: 'Mesajınız',
+        submit: 'Gönder',
+        success: 'Mesajınız alındı. En kısa sürede dönüş yapacağız.',
+        error: 'Lütfen zorunlu alanları doldurun ve geçerli bir e-posta girin.',
+        validations: {
+          required: 'Lütfen tüm zorunlu alanları doldurun.',
+          email: 'Lütfen geçerli bir e-posta adresi girin.',
+        },
+        placeholders: {
+          name: 'Adınız Soyadınız',
+          email: 'ornek@domain.com',
+          phone: '+90 5xx xxx xx xx',
+          subject: 'Konu başlığı',
+          message: 'Mesajınızı yazın...',
+        },
       },
-    },
-    contactInfo: {
-      heading: 'İletişim Bilgileri',
-      phoneLabel: 'Telefon',
-      emailLabel: 'E-posta',
-      addressLabel: 'Adres',
-      hoursLabel: 'Çalışma Saatleri',
-      phone: '+90 850 346 46 52',
-      email: 'info@ekutas.com',
-      address: 'Adres bilgisi yakında',
-      hours: 'Hafta içi 09:00–18:00',
-      mapTitle: 'Harita',
-      // Boş bırakılırsa placeholder görünür. Hazır olunca gerçek Google Maps embed linkini gir:
-      // Örn: "https://www.google.com/maps?q=İstanbul&output=embed"
-      mapEmbed: '',
+      info: {
+        title: 'İletişim Bilgileri',
+        addressTitle: 'Adres',
+        addressLines: [
+          'Ekutaş Ekşioğlu Uluslararası Ticaret İnşaat A.Ş.',
+          'Küçük Çamlıca mah. Libadiye cad. No:52 Üsküdar İstanbul, Türkiye',
+        ],
+        phoneTitle: 'Telefon',
+        phones: ['+90 850 346 46 52'],
+        emailTitle: 'E-posta',
+        emails: ['info@ekutas.com'],
+        hoursTitle: 'Çalışma Saatleri',
+        hours: ['Pzt–Cum 09:00–18:00'],
+        mapEmbedUrl: '',
+      },
     },
 
     // 404 sayfası
@@ -214,12 +279,33 @@ export const resources = {
       text: 'Üzgünüz, aradığınız sayfayı bulamadık.',
       backHome: 'Ana sayfaya dön',
     },
-    projectsPage: {
-      metaTitle: 'Projeler | Ekutaş İnşaat',
-      metaDesc: 'Tamamlanan ve devam eden projelerimizden örnekler.',
-      heading: 'Projeler',
-      intro:
-        'Konut, ticari ve endüstriyel yapılardan seçili proje görüntüleri.',
+    projects: {
+      pageTitle: 'Projeler',
+      pageDesc: 'Yurtdışı ve yurtiçi referanslarımızdan bir seçki.',
+      foreignTitle: 'Yurtdışı projeler',
+      domesticTitle: 'Yurtiçi projeler',
+      galleryTitle: 'Galeri',
+      foreign: [
+        'Ataallah Otel ve İş Merkezi – Medine',
+        'Ahmed Bekri İş Merkezi ve Oteli – Medine',
+        'Fatma Vakfı İş Merkezi – Yanbu (Medine)',
+        'Ahmed El Sabah Sarayı – Taif',
+        'Dervişoğlu Villaları – Cidde',
+        'Saudi Danish Süt Fabrikası – Medine',
+      ],
+      domestic: [
+        'Selamiçeşme – Güneş Apartmanı',
+        'Göztepe – Çevre Apartmanı',
+        'Göztepe – Ceylan Apartmanı',
+        'Ataşehir – Bahar Sitesi',
+        'Kozyatağı – Gökhan Ekşioğlu Apartmanı',
+        'Göztepe – Can Apartmanı',
+        'Göztepe – Duygun Apartmanı',
+        'Göztepe – Nur Apartmanı',
+        'Fenerbahçe – Seçer Apartmanı',
+        'Fenerbahçe – Zeynep Apartmanı',
+        'Fenerbahçe – Adil Özev Apartmanı',
+      ],
     },
   },
 
@@ -352,21 +438,74 @@ export const resources = {
       },
     },
 
-    aboutPage: {
-      heading: 'About Us',
-      intro1:
-        'Ekutaş Construction delivers quality projects on time and to spec.',
-      intro2:
-        'We operate with transparent processes and strong on-site coordination.',
-      valuesTitle: 'Our Values',
-      value1: 'Reliability',
-      value1Desc:
-        'We deliver what we promise, on time and at the agreed quality.',
-      value2: 'Transparency',
-      value2Desc: 'Clear, traceable communication on scope, process, and cost.',
-      value3: 'Safety',
-      value3Desc:
-        'People first: compliant site safety practices and inspections.',
+    about: {
+      heroTitle: 'About Us',
+      heroSubtitle:
+        'Ekutaş Eksioglu International Trade & Construction Inc. — Structures Rise on Trust.',
+      who: {
+        title: 'Who We Are',
+        paragraphs: [
+          'Founded in 1937, Ekutaş is one of Turkey’s most established construction companies, a symbol of trust and quality across three generations. Initially operating as Ekşioğlu İnşaat, the company took the name Ekutaş Ekşioğlu International Trade Contracting Inc. in 1983 as a subsidiary of Ekşioğlu Holding.',
+          'Following success in domestic projects throughout the 1980s and 1990s, the group merged with Ekgüntaş and delivered projects abroad, gaining international experience in infrastructure, residential and industrial buildings, surpassing USD 20 billion in completed work together with group companies.',
+          'After the merger period, Ekutaş continued on its own path and now focuses on Istanbul-based projects—primarily residential and commercial—creating aesthetic and functional buildings that improve quality of life.',
+          'With the strength of our past, we continue to build the future.',
+        ],
+      },
+      history: {
+        title: 'Brief Timeline',
+        items: [
+          { label: '1937', text: 'Foundations of Ekutaş laid.' },
+          {
+            label: '1983',
+            text: 'Became a subsidiary of Ekşioğlu Holding; new legal title adopted.',
+          },
+          {
+            label: '1980s–1990s',
+            text: 'Merger with Ekgüntaş; international projects in infrastructure, residential and industrial; USD 20B+ completed volume.',
+          },
+          {
+            label: 'Today',
+            text: 'Istanbul-focused; delivering aesthetic and functional residential and commercial projects.',
+          },
+        ],
+      },
+      values: {
+        title: 'Our Values',
+        items: [
+          {
+            title: 'Reliability',
+            desc: 'For over 80 years, we have honored our commitments.',
+          },
+          {
+            title: 'Quality',
+            desc: 'We uphold high standards from material selection to workmanship.',
+          },
+          {
+            title: 'Sustainability',
+            desc: 'We develop environmentally responsible solutions for future generations.',
+          },
+          {
+            title: 'Family Culture',
+            desc: 'We nurture our founders’ values with our team and partners.',
+          },
+        ],
+      },
+      vision: {
+        title: 'Our Vision',
+        body: 'To be a leading construction brand—recognized in Turkey and worldwide—for quality, trust and sustainability across living spaces, infrastructure and commercial projects.',
+      },
+      mission: {
+        title: 'Our Mission',
+        bullets: [
+          'Never compromising on reliability,',
+          'Engineering and architectural excellence,',
+          'Environmentally conscious and sustainable solutions,',
+          'Projects that unite aesthetics with functionality.',
+        ],
+        footnote:
+          'Our fundamental mission is to build structures that create value for our clients, partners and society.',
+      },
+      closing: 'Ekutaş — Structures Rise on Trust.',
     },
 
     servicesPage: {
@@ -392,22 +531,49 @@ export const resources = {
       ],
     },
 
-    contactPage: {
-      metaTitle: 'Contact | Ekutaş',
-      metaDesc: 'Get in touch with Ekutaş.',
-      heading: 'Contact',
-      name: 'Full Name',
-      email: 'Email',
-      message: 'Your Message',
-      send: 'Send',
-      successTitle: 'Thank you!',
-      successText: 'We’ve received your message and will get back to you soon.',
-      errors: {
-        nameRequired: 'Please enter your name.',
-        emailInvalid: 'Please enter a valid email.',
-        messageRequired: 'Please write a message.',
+    contact: {
+      pageTitle: 'Contact',
+      pageDesc:
+        'Get in touch about your projects. We’ll get back to you shortly.',
+      form: {
+        name: 'Full Name',
+        email: 'Email',
+        phone: 'Phone',
+        subject: 'Subject',
+        message: 'Message',
+        submit: 'Send',
+        success: 'Your message has been received. We’ll get back to you soon.',
+        error:
+          'Please fill in the required fields and enter a valid email address.',
+        validations: {
+          required: 'Please complete all required fields.',
+          email: 'Please enter a valid email address.',
+        },
+        placeholders: {
+          name: 'Your full name',
+          email: 'you@example.com',
+          phone: '+90 5xx xxx xx xx',
+          subject: 'Subject line',
+          message: 'Type your message...',
+        },
+      },
+      info: {
+        title: 'Contact Details',
+        addressTitle: 'Address',
+        addressLines: [
+          'Ekutaş Ekşioğlu Uluslararası Ticaret İnşaat A.Ş.',
+          'Küçük Çamlıca mah. Libadiye cad. No:52 Üsküdar İstanbul, Türkiye',
+        ],
+        phoneTitle: 'Phone',
+        phones: ['+90 850 346 46 52'],
+        emailTitle: 'Email',
+        emails: ['info@ekutas.com'],
+        hoursTitle: 'Working Hours',
+        hours: ['Mon–Fri 09:00–18:00'],
+        mapEmbedUrl: '',
       },
     },
+
     contactInfo: {
       heading: 'Contact Information',
       phoneLabel: 'Phone',
@@ -428,12 +594,34 @@ export const resources = {
       text: 'Sorry, we couldn’t find the page you were looking for.',
       backHome: 'Back to home',
     },
-    projectsPage: {
-      metaTitle: 'Projects | Ekutaş Construction',
-      metaDesc: 'Examples from our completed and ongoing projects.',
-      heading: 'Projects',
-      intro:
-        'Selected shots from residential, commercial, and industrial works.',
+    projects: {
+      pageTitle: 'Projects',
+      pageDesc: 'A selection from our international and domestic references.',
+      foreignTitle: 'International Projects',
+      domesticTitle: 'Domestic Projects',
+      galleryTitle: 'Gallery',
+
+      foreign: [
+        'Ataallah Hotel & Business Center – Medina',
+        'Ahmed Bekri Business Center & Hotel – Medina',
+        'Fatma Foundation Business Center – Yanbu (Medina Province)',
+        'Ahmed Al-Sabah Palace – Taif',
+        'Dervişoğlu Villas – Jeddah',
+        'Saudi Danish Dairy Factory – Medina',
+      ],
+      domestic: [
+        'Selamiçeşme – Güneş Apartment',
+        'Göztepe – Çevre Apartment',
+        'Göztepe – Ceylan Apartment',
+        'Ataşehir – Bahar Housing Complex',
+        'Kozyatağı – Gökhan Ekşioğlu Apartment',
+        'Göztepe – Can Apartment',
+        'Göztepe – Duygun Apartment',
+        'Göztepe – Nur Apartment',
+        'Fenerbahçe – Seçer Apartment',
+        'Fenerbahçe – Zeynep Apartment',
+        'Fenerbahçe – Adil Özev Apartment',
+      ],
     },
   },
 } as const;
