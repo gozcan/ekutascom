@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html, body {
+    @apply text-slate-800;
+  }
+  body {
+    @apply font-sans leading-relaxed;
+  }
+   /* Başlıklar daha derli toplu */
+  h1 { @apply mb-3 md:mb-4; }
+  h2 { @apply mb-2 md:mb-3; }
+  h3 { @apply mb-2; }
+
+  /* Paragraflar rahat okunur, araları net */
+  p { @apply leading-relaxed; }
+  p + p { @apply mt-3; }
+
+  /* Linkler amber vurgu (nav’daki stil sınıfları bunu override eder) */
+  a { @apply underline-offset-4 text-amber-700 hover:text-amber-800; }
+
+  /* Seçim rengi (metin seçince premium his) */
+  ::selection {
+    background-color: theme('colors.amber.200');
+    color: #0f172a; /* slate-900 */
+  }
+
+  /* Bölüm başlıklarına anchor ile atlanınca üstü header’a çarpmasın */
+  section { @apply scroll-mt-24; }
+}
