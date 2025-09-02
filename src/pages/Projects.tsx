@@ -76,7 +76,6 @@ export default function Projects() {
   return (
     <div className="bg-white">
       {/* Meta */}
-      <title>{data.pageTitle} | Ekutaş</title>
       <meta
         name="description"
         content={data.pageDesc || data.pageTitle}

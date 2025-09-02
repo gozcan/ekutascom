@@ -92,7 +92,6 @@ export default function Contact() {
   return (
     <div className="bg-white">
       {/* Meta */}
-      <title>{t('contact.pageTitle')} | Ekutaş</title>
       <meta
         name="description"
         content={data.pageDesc || t('contact.pageTitle')}

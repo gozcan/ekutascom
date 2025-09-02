@@ -13,7 +13,7 @@ export const resources = {
 
     // Ana sayfa ve genel meta
     meta: {
-      homeTitle: 'Ana Sayfa | Ekutaş İnşaat',
+      homeTitle: 'Ana Sayfa | Ekutaş',
       homeDesc:
         'Ekutaş İnşaat: konut, ticari ve endüstriyel projelerde anahtar teslim çözümler.',
       aboutTitle: 'Hakkımızda | Ekutaş İnşaat',

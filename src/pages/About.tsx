@@ -43,7 +43,6 @@ export default function About() {
   return (
     <div className="bg-white">
       {/* Meta */}
-      <title>{t('about.heroTitle')} | Ekutaş</title>
       <meta
         name="description"
         content={who.paragraphs?.[0] ?? 'Ekutaş'}
