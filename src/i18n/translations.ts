@@ -319,7 +319,7 @@ export const resources = {
     },
 
     meta: {
-      homeTitle: 'Home | Ekutaş Construction',
+      homeTitle: 'Home | Ekutaş',
       homeDesc:
         'Ekutaş Construction: turnkey solutions for residential, commercial, and industrial projects.',
       aboutTitle: 'About | Ekutaş Construction',
