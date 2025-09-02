@@ -309,7 +309,7 @@ export const resources = {
   },
 
   en: {
-    brand: 'Ekutaş Construction',
+    brand: 'Ekutaş',
     nav: {
       home: 'Home',
       about: 'About',
