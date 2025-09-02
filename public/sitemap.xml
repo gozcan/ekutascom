@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>ekutas.com/</loc>
+    <loc>https://www.ekutas.com/</loc>
     <lastmod>2025-09-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>ekutas.com/about</loc>
+    <loc>https://www.ekutas.com/about</loc>
     <lastmod>2025-09-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>ekutas.com/services</loc>
+    <loc>https://www.ekutas.com/services</loc>
     <lastmod>2025-09-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>ekutas.com/projects</loc>
+    <loc>https://www.ekutas.com/projects</loc>
     <lastmod>2025-09-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>ekutas.com/contact</loc>
+    <loc>https://www.ekutas.com/contact</loc>
     <lastmod>2025-09-02</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
