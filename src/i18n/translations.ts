@@ -328,7 +328,7 @@ export const resources = {
     },
 
     hero: {
-      title: 'Ekutaş Construction — safe & solid structures',
+      title: 'Safe & solid structures',
       subtitle:
         'End-to-end construction solutions for residential, commercial, and industrial projects.',
       imageAlt: 'Ekutaş Construction site and field operations',
