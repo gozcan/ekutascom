@@ -32,7 +32,7 @@ export const resources = {
         yearsLabel: 'Yıl',
         projectsValue: '120+',
         projectsLabel: 'Proje',
-        areaValue: '250.000+',
+        areaValue: '2.000.000+',
         areaLabel: 'm²',
       },
     },

@@ -143,22 +143,22 @@ function AboutFigure() {
   return (
     <FMReveal>
       <figure className="relative overflow-hidden rounded-2xl">
-        <div className="aspect-[4/3] md:aspect-[16/10] bg-gradient-to-tr from-slate-200 via-slate-100 to-white" />
+        <div className="aspect-[4/3] md:aspect-[4/3] bg-gradient-to-tr from-slate-200 via-slate-100 to-white" />
         <Parallax
           speed={0.2}
           className="absolute inset-0"
         >
           <picture>
             <source
-              srcSet="/images/about.webp"
+              srcSet="/images/whyus.webp"
               type="image/webp"
             />
             <img
-              src="/images/about.jpg"
-              alt="About Ekutaş"
+              src="/images/whyus.jpg"
+              alt="Why Ekutaş?"
               loading="lazy"
               decoding="async"
-              className="h-full w-full object-cover object-[50%_40%] transition-transform duration-500 hover:scale-[1.015]"
+              className="h-full w-full object-contain  transition-transform duration-500 hover:scale-[1.015]"
             />
           </picture>
         </Parallax>
