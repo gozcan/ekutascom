@@ -441,7 +441,7 @@ export default function Home() {
                 tagTr: 'Endüstriyel · Gebze',
                 tagEn: 'Industrial · Gebze',
               },
-            ].map((project, i) => (
+            ].map((project) => (
               <ProjectCard
                 key={project.id}
                 imgId={project.id}
