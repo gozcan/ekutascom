@@ -4,7 +4,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
-import Projects from './pages/Projects'; // ← eklendi
+import Projects from './pages/Projects';
+import ProjectDetail from './pages/ProjectDetail'; // ← yeni eklendi
 import NotFound from './pages/NotFound';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -41,8 +42,11 @@ export default function App() {
         <Route
           path="/projects"
           element={<Projects />}
-        />{' '}
-        {/* ← eklendi */}
+        />
+        <Route
+          path="/projects/:slug"
+          element={<ProjectDetail />}
+        />
         <Route
           path="*"
           element={<NotFound />}

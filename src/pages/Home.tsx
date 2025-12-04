@@ -422,25 +422,32 @@ export default function Home() {
           </motion.p>
 
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {['p1', 'p2', 'p3'].map((id, i) => (
+            {[
+              {
+                id: 'p1',
+                slug: 'ali-sahin-apartmanı',
+                tagTr: 'Konut · Üsküdar',
+                tagEn: 'Residential · Üsküdar',
+              },
+              {
+                id: 'p2',
+                slug: null,
+                tagTr: 'Konut · Kısıklı',
+                tagEn: 'Residential · Kısıklı',
+              },
+              {
+                id: 'p3',
+                slug: null,
+                tagTr: 'Endüstriyel · Gebze',
+                tagEn: 'Industrial · Gebze',
+              },
+            ].map((project, i) => (
               <ProjectCard
-                key={id}
-                imgId={id}
-                tag={
-                  (lang === 'tr'
-                    ? [
-                        'Villa · Üsküdar',
-                        'Konut · Kısıklı',
-                        'Endüstriyel · Gebze',
-                      ]
-                    : [
-                        'Villa · Üsküdar',
-                        'Residential · Kısıklı',
-                        'Industrial · Gebze',
-                      ])[i] || ''
-                }
+                key={project.id}
+                imgId={project.id}
+                tag={lang === 'tr' ? project.tagTr : project.tagEn}
                 alt={t('projectsPage.heading')}
-                link="/projects"
+                link={project.slug ? `/projects/${project.slug}` : '/projects'}
               />
             ))}
           </div>
