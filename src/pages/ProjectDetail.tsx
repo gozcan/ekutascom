@@ -10,10 +10,10 @@ const projectsData = {
       location: 'Kozyatağı, İstanbul',
       category: 'Konut',
       year: '2026',
-      area: '1.200 m²',
+      area: '2.500 m²',
       status: 'Başlanacak',
       description:
-        "Ali Şahin Apartmanı, Kozyatağı'nın nezih bir bölgesinde konumlanan 14 katlı modern konut projesidir. Toplam 24 daire içeren yapı, depreme dayanıklı betonarme taşıyıcı sistemi, enerji verimli dış cephe kaplaması ve akıllı bina sistemleriyle donatılmıştır.",
+        "Ali Şahin Apartmanı, Kozyatağı'nın nezih bir bölgesinde konumlanan 12 katlı modern konut projesidir. Toplam 24 daire içeren yapı, depreme dayanıklı betonarme taşıyıcı sistemi, enerji verimli dış cephe kaplaması ve akıllı bina sistemleriyle donatılmıştır.",
       features: [
         'Depreme dayanıklı betonarme taşıyıcı sistem',
         'Isı yalıtımlı dış cephe kaplaması',
@@ -36,10 +36,10 @@ const projectsData = {
       location: 'Kozyatağı, Istanbul',
       category: 'Residential',
       year: '2026',
-      area: '1,200 m²',
+      area: '2,500 m²',
       status: 'To be started',
       description:
-        'Ali Şahin Apartment is a 14-story modern residential project located in a distinguished area of Kozyatağı. The building contains 24 apartments and is equipped with an earthquake-resistant reinforced concrete structural system, energy-efficient facade cladding, and smart building systems.',
+        'Ali Şahin Apartment is a 12-story modern residential project located in a distinguished area of Kozyatağı. The building contains 24 apartments and is equipped with an earthquake-resistant reinforced concrete structural system, energy-efficient facade cladding, and smart building systems.',
       features: [
         'Earthquake-resistant reinforced concrete structure',
         'Thermally insulated facade cladding',
