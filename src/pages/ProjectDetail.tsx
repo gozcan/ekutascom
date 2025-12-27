@@ -107,6 +107,8 @@ const projectsData = {
         'Elektrik tesisat',
         'Peyzaj düzenlemesi',
       ],
+      documents: [],
+      floorPlans: [],
     },
     en: {
       title: 'ABC Apartment',
@@ -132,6 +134,8 @@ const projectsData = {
         'Electrical installation',
         'Landscaping',
       ],
+      documents: [],
+      floorPlans: [],
     },
   },
   'bahcelievler-kosem-apartmani': {
@@ -158,6 +162,8 @@ const projectsData = {
         'Mühendislik hizmetleri',
         'İç mekan tasarımı',
       ],
+      documents: [],
+      floorPlans: [],
     },
     en: {
       title: 'Köşem Apartment',
@@ -182,6 +188,8 @@ const projectsData = {
         'Engineering services',
         'Interior design',
       ],
+      documents: [],
+      floorPlans: [],
     },
   },
 };
