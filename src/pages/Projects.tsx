@@ -210,7 +210,8 @@ export default function Projects() {
                   ) {
                     slug = 'ali-sahin-apartmani';
                   } else if (
-                    fullText.includes('dogan') &&
+                    (fullText.includes('dogan') ||
+                      fullText.includes('doğan')) &&
                     (fullText.includes('kısıklı') ||
                       fullText.includes('kisikli'))
                   ) {
