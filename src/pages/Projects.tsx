@@ -440,16 +440,18 @@ function GallerySlide({
 }) {
   // Devam eden projeler için özel yol belirleme
   let srcBase = `/images/projects/${item.imgId}`;
-  
+
   if (item.imgId.startsWith('ongoing')) {
     const index = parseInt(item.imgId.replace('ongoing', ''));
     if (index === 1) srcBase = '/images/projects/ali-sahin-apartmani/hero';
-    else if (index === 2) srcBase = '/images/projects/kisikli-abc-apartmani/hero';
-    else if (index === 3) srcBase = '/images/projects/bahcelievler-kosem-apartmani/hero';
+    else if (index === 2)
+      srcBase = '/images/projects/kisikli-abc-apartmani/hero';
+    else if (index === 3)
+      srcBase = '/images/projects/bahcelievler-kosem-apartmani/hero';
   }
 
   const [imgSrc, setImgSrc] = useState(`${srcBase}.jpg`);
-  
+
   const onErr: React.ReactEventHandler<HTMLImageElement> = (e) => {
     const el = e.currentTarget;
     const text = encodeURIComponent(item.title);
