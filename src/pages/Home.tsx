@@ -437,7 +437,7 @@ export default function Home() {
               },
               {
                 id: 'p2',
-                slug: 'kisikli-abc-apartmani',
+                slug: 'kisikli-dogan-apartmani',
                 tagTr: 'Konut · Kısıklı',
                 tagEn: 'Residential · Kısıklı',
               },

@@ -287,7 +287,7 @@ export const resources = {
       galleryTitle: 'Galeri',
       ongoing: [
         'Ali Şahin Apartmanı – Kozyatağı',
-        'ABC Apartmanı – Kısıklı',
+        'Doğan Apartmanı – Kısıklı',
         'Köşem Apartmanı – Bahçelievler',
       ],
       foreign: [
@@ -607,7 +607,7 @@ export const resources = {
 
       ongoing: [
         'Ali Şahin Apartment – Kozyatağı',
-        'ABC Apartment – Kısıklı',
+        'Doğan Apartment – Kısıklı',
         'Köşem Apartment – Bahçelievler',
       ],
       foreign: [

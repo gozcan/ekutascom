@@ -210,11 +210,11 @@ export default function Projects() {
                   ) {
                     slug = 'ali-sahin-apartmani';
                   } else if (
-                    fullText.includes('abc') &&
+                    fullText.includes('dogan') &&
                     (fullText.includes('kısıklı') ||
                       fullText.includes('kisikli'))
                   ) {
-                    slug = 'kisikli-abc-apartmani';
+                    slug = 'kisikli-dogan-apartmani';
                   } else if (
                     (fullText.includes('köşem') ||
                       fullText.includes('kosem')) &&
@@ -445,7 +445,7 @@ function GallerySlide({
     const index = parseInt(item.imgId.replace('ongoing', ''));
     if (index === 1) srcBase = '/images/projects/ali-sahin-apartmani/hero';
     else if (index === 2)
-      srcBase = '/images/projects/kisikli-abc-apartmani/hero';
+      srcBase = '/images/projects/kisikli-dogan-apartmani/hero';
     else if (index === 3)
       srcBase = '/images/projects/bahcelievler-kosem-apartmani/hero';
   }

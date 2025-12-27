@@ -82,16 +82,16 @@ const projectsData = {
       ],
     },
   },
-  'kisikli-abc-apartmani': {
+  'kisikli-dogan-apartmani': {
     tr: {
-      title: 'ABC Apartmanı',
+      title: 'Doğan Apartmanı',
       location: 'Kısıklı, İstanbul',
       category: 'Konut',
-      year: '2026',
-      area: '3.500 m²',
+      year: '2025',
+      area: '1.800 m²',
       status: 'Devam Ediyor',
       description:
-        "Kısıklı'nın prestijli bölgesinde yer alan ABC Apartmanı, modern mimarisi ve yüksek yaşam standartlarıyla dikkat çekiyor. Proje, konforlu daireleri ve sosyal donatılarıyla sakinlerine ayrıcalıklı bir yaşam sunuyor.",
+        "Kısıklı'nın prestijli bölgesinde yer alan Doğan Apartmanı, modern mimarisi ve yüksek yaşam standartlarıyla dikkat çekiyor. Proje, konforlu daireleri ve sosyal donatılarıyla sakinlerine ayrıcalıklı bir yaşam sunuyor.",
       features: [
         'Depreme dayanıklı yapı',
         'Kapalı otopark',
@@ -111,14 +111,14 @@ const projectsData = {
       floorPlans: [],
     },
     en: {
-      title: 'ABC Apartment',
+      title: 'Doğan Apartment',
       location: 'Kısıklı, Istanbul',
       category: 'Residential',
-      year: '2026',
-      area: '3,500 m²',
+      year: '2025',
+      area: '1,800 m²',
       status: 'Ongoing',
       description:
-        'Located in the prestigious area of Kısıklı, ABC Apartment stands out with its modern architecture and high living standards. The project offers a privileged life to its residents with comfortable apartments and social facilities.',
+        'Located in the prestigious area of Kısıklı, Doğan Apartment stands out with its modern architecture and high living standards. The project offers a privileged life to its residents with comfortable apartments and social facilities.',
       features: [
         'Earthquake-resistant structure',
         'Indoor parking',
@@ -143,8 +143,8 @@ const projectsData = {
       title: 'Köşem Apartmanı',
       location: 'Bahçelievler, İstanbul',
       category: 'Konut',
-      year: '2026',
-      area: '2.800 m²',
+      year: '2025',
+      area: '1.068 m²',
       status: 'Devam Ediyor',
       description:
         "Bahçelievler'in merkezi konumunda yükselen Köşem Apartmanı, ulaşım kolaylığı ve çevresel olanaklarıyla öne çıkıyor. Modern tasarım anlayışıyla inşa edilen proje, ferah yaşam alanları vaat ediyor.",
@@ -169,8 +169,8 @@ const projectsData = {
       title: 'Köşem Apartment',
       location: 'Bahçelievler, Istanbul',
       category: 'Residential',
-      year: '2026',
-      area: '2,800 m²',
+      year: '2025',
+      area: '1,068 m²',
       status: 'Ongoing',
       description:
         'Rising in the central location of Bahçelievler, Köşem Apartment stands out with its ease of transportation and environmental amenities. Built with a modern design approach, the project promises spacious living spaces.',
@@ -205,8 +205,8 @@ const slugAliases: Record<string, string> = {
   'ali-sahin-apartmanı': 'ali-sahin-apartmani',
   'ali-şahin-apartmani': 'ali-sahin-apartmani',
   'ali-şahin-apartmanı': 'ali-sahin-apartmani',
-  'kisikli-abc-apartmani': 'kisikli-abc-apartmani',
-  'kısıklı-abc-apartmanı': 'kisikli-abc-apartmani',
+  'kisikli-dogan-apartmani': 'kisikli-dogan-apartmani',
+  'kısıklı-dogan-apartmanı': 'kisikli-dogan-apartmani',
   'bahcelievler-kosem-apartmani': 'bahcelievler-kosem-apartmani',
   'bahçelievler-köşem-apartmanı': 'bahcelievler-kosem-apartmani',
 };
