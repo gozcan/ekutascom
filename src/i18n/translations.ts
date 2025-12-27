@@ -32,7 +32,7 @@ export const resources = {
         yearsLabel: 'Yıl',
         projectsValue: '120+',
         projectsLabel: 'Proje',
-        areaValue: '2.000.000+',
+        areaValue: '2.ek000.000+',
         areaLabel: 'm²',
       },
     },
@@ -41,9 +41,9 @@ export const resources = {
     home: {
       title: 'Ana Sayfa',
       desc: 'Yapı projeleriniz için uçtan uca, mevzuata uyumlu çözümler.',
-      featuredTitle: 'Öne Çıkan Projeler',
+      featuredTitle: 'Devam Eden Projeler',
       featuredDesc:
-        'Konut, ticari ve endüstriyel projelerimizden kısa bir seçki.',
+        'Şu anda yapımı süren ve yakında teslim edilecek projelerimiz.',
       viewAll: 'Tüm Projeler',
       benefitsTitle: 'Neden Ekutaş?',
       benefitsDesc:
@@ -281,9 +281,15 @@ export const resources = {
     projects: {
       pageTitle: 'Projeler',
       pageDesc: 'Yurtdışı ve yurtiçi referanslarımızdan bir seçki.',
+      ongoingTitle: 'Devam Eden Projeler',
       foreignTitle: 'Yurtdışı projeler',
       domesticTitle: 'Yurtiçi projeler',
       galleryTitle: 'Galeri',
+      ongoing: [
+        'Ali Şahin Apartmanı – Kozyatağı',
+        'ABC Apartmanı – Kısıklı',
+        'Köşem Apartmanı – Bahçelievler',
+      ],
       foreign: [
         'Ataallah Otel ve İş Merkezi – Medine',
         'Ahmed Bekri İş Merkezi ve Oteli – Medine',
@@ -345,9 +351,8 @@ export const resources = {
     home: {
       title: 'Home',
       desc: 'End-to-end, compliant solutions for your construction projects.',
-      featuredTitle: 'Featured Projects',
-      featuredDesc:
-        'A brief selection from our residential, commercial, and industrial works.',
+      featuredTitle: 'Ongoing Projects',
+      featuredDesc: 'Our currently ongoing projects and upcoming deliveries.',
       viewAll: 'View All Projects',
       benefitsTitle: 'Why Ekutaş?',
       benefitsDesc:
@@ -595,10 +600,16 @@ export const resources = {
     projects: {
       pageTitle: 'Projects',
       pageDesc: 'A selection from our international and domestic references.',
+      ongoingTitle: 'Ongoing Projects',
       foreignTitle: 'International Projects',
       domesticTitle: 'Domestic Projects',
       galleryTitle: 'Gallery',
 
+      ongoing: [
+        'Ali Şahin Apartment – Kozyatağı',
+        'ABC Apartment – Kısıklı',
+        'Köşem Apartment – Bahçelievler',
+      ],
       foreign: [
         'Ataallah Hotel & Business Center – Medina',
         'Ahmed Bekri Business Center & Hotel – Medina',

@@ -30,6 +30,18 @@ const projectsData = {
         'Dış cephe izolasyonu',
         'İç mimari uygulama',
       ],
+      documents: [
+        {
+          title: 'Kat Planı ve Paylaşım Şeması',
+          url: '/documents/ali-sahin-kat-plani.pdf',
+        },
+      ],
+      floorPlans: [
+        {
+          title: 'Normal Kat Planı',
+          image: '/images/projects/ali-sahin-apartmani/floor-plan.jpg',
+        },
+      ],
     },
     en: {
       title: 'Ali Şahin Apartment',
@@ -56,6 +68,120 @@ const projectsData = {
         'Exterior insulation',
         'Interior design implementation',
       ],
+      documents: [
+        {
+          title: 'Floor Plan and Sharing Scheme',
+          url: '/documents/ali-sahin-kat-plani.pdf',
+        },
+      ],
+      floorPlans: [
+        {
+          title: 'Normal Floor Plan',
+          image: '/images/projects/ali-sahin-apartmani/floor-plan.jpg',
+        },
+      ],
+    },
+  },
+  'kisikli-abc-apartmani': {
+    tr: {
+      title: 'ABC Apartmanı',
+      location: 'Kısıklı, İstanbul',
+      category: 'Konut',
+      year: '2026',
+      area: '3.500 m²',
+      status: 'Devam Ediyor',
+      description:
+        "Kısıklı'nın prestijli bölgesinde yer alan ABC Apartmanı, modern mimarisi ve yüksek yaşam standartlarıyla dikkat çekiyor. Proje, konforlu daireleri ve sosyal donatılarıyla sakinlerine ayrıcalıklı bir yaşam sunuyor.",
+      features: [
+        'Depreme dayanıklı yapı',
+        'Kapalı otopark',
+        'Güvenlik hizmeti',
+        'Yeşil alanlar',
+        'Çocuk oyun parkı',
+        'Jeneratör',
+      ],
+      scope: [
+        'Kaba yapı işleri',
+        'İnce yapı işleri',
+        'Mekanik tesisat',
+        'Elektrik tesisat',
+        'Peyzaj düzenlemesi',
+      ],
+    },
+    en: {
+      title: 'ABC Apartment',
+      location: 'Kısıklı, Istanbul',
+      category: 'Residential',
+      year: '2026',
+      area: '3,500 m²',
+      status: 'Ongoing',
+      description:
+        'Located in the prestigious area of Kısıklı, ABC Apartment stands out with its modern architecture and high living standards. The project offers a privileged life to its residents with comfortable apartments and social facilities.',
+      features: [
+        'Earthquake-resistant structure',
+        'Indoor parking',
+        'Security service',
+        'Green areas',
+        'Children playground',
+        'Generator',
+      ],
+      scope: [
+        'Structural works',
+        'Finishing works',
+        'Mechanical installation',
+        'Electrical installation',
+        'Landscaping',
+      ],
+    },
+  },
+  'bahcelievler-kosem-apartmani': {
+    tr: {
+      title: 'Köşem Apartmanı',
+      location: 'Bahçelievler, İstanbul',
+      category: 'Konut',
+      year: '2026',
+      area: '2.800 m²',
+      status: 'Devam Ediyor',
+      description:
+        "Bahçelievler'in merkezi konumunda yükselen Köşem Apartmanı, ulaşım kolaylığı ve çevresel olanaklarıyla öne çıkıyor. Modern tasarım anlayışıyla inşa edilen proje, ferah yaşam alanları vaat ediyor.",
+      features: [
+        'Merkezi konum',
+        'Isı ve ses yalıtımı',
+        'Asansör',
+        'Görüntülü diafon',
+        'Fiber internet altyapısı',
+        'Su deposu',
+      ],
+      scope: [
+        'Anahtar teslim inşaat',
+        'Mimari tasarım',
+        'Mühendislik hizmetleri',
+        'İç mekan tasarımı',
+      ],
+    },
+    en: {
+      title: 'Köşem Apartment',
+      location: 'Bahçelievler, Istanbul',
+      category: 'Residential',
+      year: '2026',
+      area: '2,800 m²',
+      status: 'Ongoing',
+      description:
+        'Rising in the central location of Bahçelievler, Köşem Apartment stands out with its ease of transportation and environmental amenities. Built with a modern design approach, the project promises spacious living spaces.',
+      features: [
+        'Central location',
+        'Heat and sound insulation',
+        'Elevator',
+        'Video intercom',
+        'Fiber internet infrastructure',
+        'Water tank',
+      ],
+      scope: [
+        'Turnkey construction',
+        'Architectural design',
+        'Engineering services',
+        'Interior design',
+      ],
     },
   },
 };
@@ -71,6 +197,10 @@ const slugAliases: Record<string, string> = {
   'ali-sahin-apartmanı': 'ali-sahin-apartmani',
   'ali-şahin-apartmani': 'ali-sahin-apartmani',
   'ali-şahin-apartmanı': 'ali-sahin-apartmani',
+  'kisikli-abc-apartmani': 'kisikli-abc-apartmani',
+  'kısıklı-abc-apartmanı': 'kisikli-abc-apartmani',
+  'bahcelievler-kosem-apartmani': 'bahcelievler-kosem-apartmani',
+  'bahçelievler-köşem-apartmanı': 'bahcelievler-kosem-apartmani',
 };
 
 function normalizeSlug(slug: string): string {
@@ -245,6 +375,38 @@ export default function ProjectDetail() {
                 ))}
               </ul>
             </motion.div>
+
+            {/* Kat Planları */}
+            {data.floorPlans && data.floorPlans.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mt-12"
+              >
+                <h3 className="font-heading text-xl font-bold text-slate-900">
+                  {lang === 'tr' ? 'Kat Planları' : 'Floor Plans'}
+                </h3>
+                <div className="mt-6 grid gap-6">
+                  {data.floorPlans.map((plan: any, i: number) => (
+                    <div
+                      key={i}
+                      className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50"
+                    >
+                      <img
+                        src={plan.image}
+                        alt={plan.title}
+                        className="w-full object-contain"
+                      />
+                      <div className="p-3 text-center text-sm font-medium text-slate-600">
+                        {plan.title}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
           </div>
 
           {/* Sağ: Bilgi Kartı */}
@@ -298,6 +460,54 @@ export default function ProjectDetail() {
                   </dd>
                 </div>
               </dl>
+
+              {/* Dokümanlar */}
+              {data.documents && data.documents.length > 0 && (
+                <div className="mt-6 border-t border-slate-200 pt-4">
+                  <h4 className="mb-3 font-medium text-slate-900">
+                    {lang === 'tr' ? 'Dokümanlar' : 'Documents'}
+                  </h4>
+                  <ul className="space-y-2">
+                    {data.documents.map((doc: any, i: number) => (
+                      <li key={i}>
+                        <a
+                          href={doc.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-sm text-amber-600 hover:text-amber-700 hover:underline"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            className="h-4 w-4 flex-none"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line
+                              x1="16"
+                              y1="13"
+                              x2="8"
+                              y2="13"
+                            />
+                            <line
+                              x1="16"
+                              y1="17"
+                              x2="8"
+                              y2="17"
+                            />
+                            <polyline points="10 9 9 9 8 9" />
+                          </svg>
+                          {doc.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {/* İletişim Butonu */}
               <a

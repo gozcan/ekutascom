@@ -332,6 +332,12 @@ export default function Home() {
             loading="lazy"
             decoding="async"
             className="absolute inset-0 h-full w-full object-cover object-[50%_35%] transition-transform duration-500 group-hover:scale-[1.04]"
+            onError={(e) => {
+              const target = e.currentTarget;
+              if (target.src.includes('.jpg')) {
+                target.src = target.src.replace('.jpg', '.png');
+              }
+            }}
           />
         </picture>
 
@@ -425,21 +431,21 @@ export default function Home() {
             {[
               {
                 id: 'p1',
-                slug: 'ali-sahin-apartmanı',
-                tagTr: 'Konut · Üsküdar',
-                tagEn: 'Residential · Üsküdar',
+                slug: 'ali-sahin-apartmani',
+                tagTr: 'Konut · Kozyatağı',
+                tagEn: 'Residential · Kozyatağı',
               },
               {
                 id: 'p2',
-                slug: null,
+                slug: 'kisikli-abc-apartmani',
                 tagTr: 'Konut · Kısıklı',
                 tagEn: 'Residential · Kısıklı',
               },
               {
                 id: 'p3',
-                slug: null,
-                tagTr: 'Endüstriyel · Gebze',
-                tagEn: 'Industrial · Gebze',
+                slug: 'bahcelievler-kosem-apartmani',
+                tagTr: 'Konut · Bahçelievler',
+                tagEn: 'Residential · Bahçelievler',
               },
             ].map((project) => (
               <ProjectCard

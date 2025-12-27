@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useMemo, useRef, useCallback } from 'react';
+import { useMemo, useRef, useCallback, useState } from 'react';
 import { useI18n } from '../i18n/I18nProvider';
 import { resources, get } from '../i18n/translations';
 
@@ -17,15 +17,19 @@ export default function Projects() {
     const p = (get(resources[lang], 'projects') as {
       pageTitle: string;
       pageDesc: string;
+      ongoingTitle: string;
       foreignTitle: string;
       domesticTitle: string;
+      ongoing: string[];
       foreign: string[];
       domestic: string[];
     }) || {
       pageTitle: 'Projeler',
       pageDesc: '',
+      ongoingTitle: '',
       foreignTitle: '',
       domesticTitle: '',
+      ongoing: [],
       foreign: [],
       domestic: [],
     };
@@ -33,6 +37,10 @@ export default function Projects() {
   }, [lang]);
 
   // Listeler için metin ayrıştırma
+  const ongoingList = useMemo(
+    () => (data.ongoing || []).map(splitTitleLocation),
+    [data.ongoing]
+  );
   const foreignList = useMemo(
     () => data.foreign.map(splitTitleLocation),
     [data.foreign]
@@ -43,6 +51,15 @@ export default function Projects() {
   );
 
   // Alttaki slider için görselleri hazırla (opsiyonel görsel yoksa placeholder çalışır)
+  const ongoingGallery = useMemo(
+    () =>
+      (data.ongoing || []).map((raw, i) => ({
+        ...splitTitleLocation(raw),
+        tag: data.ongoingTitle || '',
+        imgId: `ongoing${i + 1}`,
+      })),
+    [data.ongoing, data.ongoingTitle]
+  );
   const foreignGallery = useMemo(
     () =>
       data.foreign.map((raw, i) => ({
@@ -62,16 +79,23 @@ export default function Projects() {
     [data.domestic, data.domesticTitle]
   );
   const galleryItems = useMemo(() => {
-    // Denge için 4 yurtdışı + 8 yurtiçi; görsel sayına göre artırabilirsin
+    // Devam eden projeler + yurtdışı + yurtiçi
     const take = (arr: any[], n: number) => arr.slice(0, n);
-    return [...take(foreignGallery, 4), ...take(domesticGallery, 8)];
-  }, [foreignGallery, domesticGallery]);
+    return [
+      ...take(ongoingGallery, 3),
+      ...take(foreignGallery, 4),
+      ...take(domesticGallery, 8),
+    ];
+  }, [ongoingGallery, foreignGallery, domesticGallery]);
 
   // Slider kontrolleri
   const scrollerRef = useRef<HTMLDivElement>(null);
   const scrollByX = useCallback((dx: number) => {
     scrollerRef.current?.scrollBy({ left: dx, behavior: 'smooth' });
   }, []);
+
+  // Lightbox state
+  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   return (
     <div className="bg-white">
@@ -80,6 +104,38 @@ export default function Projects() {
         name="description"
         content={data.pageDesc || data.pageTitle}
       />
+
+      {/* Lightbox Modal */}
+      {lightboxImage && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+          onClick={() => setLightboxImage(null)}
+        >
+          <button
+            onClick={() => setLightboxImage(null)}
+            className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white ring-1 ring-white/20 backdrop-blur-sm hover:bg-white/20 transition"
+            aria-label="Close"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+          <img
+            src={lightboxImage}
+            alt="Preview"
+            className="max-h-[90vh] max-w-[90vw] object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
 
       {/* Üst şerit (ambient) */}
       <section className="relative isolate overflow-hidden bg-slate-900 text-white">
@@ -120,6 +176,99 @@ export default function Projects() {
       {/* --- PROJE LİSTELERİ (üst) --- */}
       <section className="bg-white">
         <div className="mx-auto max-w-6xl px-4 py-12 md:py-16 grid gap-10 md:grid-cols-12">
+          {/* Devam Eden — TAM GENİŞLİK */}
+          {data.ongoingTitle && (
+            <div className="md:col-span-12">
+              <motion.h2
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                viewport={fade.viewport}
+                transition={fade.transition}
+                className="flex items-center gap-2 font-heading text-xl md:text-2xl font-bold tracking-tight text-slate-900"
+              >
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-amber-50 text-amber-700 ring-1 ring-amber-200">
+                  <ClockIcon />
+                </span>
+                {data.ongoingTitle}
+              </motion.h2>
+              <div
+                className="mt-3 h-1 w-20 rounded-full bg-amber-500"
+                aria-hidden="true"
+              />
+              <ul className="mt-6 grid gap-x-8 gap-y-4 md:grid-cols-3">
+                {ongoingList.map((item, i) => {
+                  let slug = null;
+                  const fullText = (
+                    (item.title || '') +
+                    ' ' +
+                    (item.location || '')
+                  ).toLowerCase();
+
+                  if (
+                    fullText.includes('ali şahin') ||
+                    fullText.includes('ali sahin')
+                  ) {
+                    slug = 'ali-sahin-apartmani';
+                  } else if (
+                    fullText.includes('abc') &&
+                    (fullText.includes('kısıklı') ||
+                      fullText.includes('kisikli'))
+                  ) {
+                    slug = 'kisikli-abc-apartmani';
+                  } else if (
+                    (fullText.includes('köşem') ||
+                      fullText.includes('kosem')) &&
+                    (fullText.includes('bahçelievler') ||
+                      fullText.includes('bahcelievler'))
+                  ) {
+                    slug = 'bahcelievler-kosem-apartmani';
+                  }
+
+                  return (
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      viewport={fade.viewport}
+                      transition={{ ...fade.transition, delay: i * 0.02 }}
+                      className="group relative flex items-start gap-2 py-2"
+                    >
+                      <span className="mt-1 inline-flex h-2.5 w-2.5 flex-none rounded-full bg-amber-400/70 ring-2 ring-amber-200/60 transition group-hover:bg-amber-500" />
+                      <div className="flex-1">
+                        {slug ? (
+                          <a
+                            href={`/projects/${slug}`}
+                            className="block"
+                          >
+                            <div className="font-medium text-slate-900 group-hover:text-amber-700 transition-colors">
+                              {item.title}
+                            </div>
+                            {item.location ? (
+                              <div className="text-sm text-slate-600 group-hover:text-amber-600/80 transition-colors">
+                                {item.location}
+                              </div>
+                            ) : null}
+                          </a>
+                        ) : (
+                          <>
+                            <div className="font-medium text-slate-900 group-hover:text-slate-950">
+                              {item.title}
+                            </div>
+                            {item.location ? (
+                              <div className="text-sm text-slate-600">
+                                {item.location}
+                              </div>
+                            ) : null}
+                          </>
+                        )}
+                      </div>
+                    </motion.li>
+                  );
+                })}
+              </ul>
+            </div>
+          )}
+
           {/* Yurtdışı — tek kolon liste */}
           <div className="md:col-span-6">
             <motion.h2
@@ -245,6 +394,7 @@ export default function Projects() {
                   key={`${g.imgId}-${i}`}
                   item={g}
                   i={i}
+                  onImageClick={setLightboxImage}
                 />
               ))}
             </div>
@@ -282,11 +432,24 @@ export default function Projects() {
 function GallerySlide({
   item,
   i,
+  onImageClick,
 }: {
   item: { imgId: string; title: string; location?: string; tag: string };
   i: number;
+  onImageClick: (url: string) => void;
 }) {
-  const srcBase = `/images/projects/${item.imgId}`;
+  // Devam eden projeler için özel yol belirleme
+  let srcBase = `/images/projects/${item.imgId}`;
+  
+  if (item.imgId.startsWith('ongoing')) {
+    const index = parseInt(item.imgId.replace('ongoing', ''));
+    if (index === 1) srcBase = '/images/projects/ali-sahin-apartmani/hero';
+    else if (index === 2) srcBase = '/images/projects/kisikli-abc-apartmani/hero';
+    else if (index === 3) srcBase = '/images/projects/bahcelievler-kosem-apartmani/hero';
+  }
+
+  const [imgSrc, setImgSrc] = useState(`${srcBase}.jpg`);
+  
   const onErr: React.ReactEventHandler<HTMLImageElement> = (e) => {
     const el = e.currentTarget;
     const text = encodeURIComponent(item.title);
@@ -308,28 +471,30 @@ function GallerySlide({
 
   return (
     <motion.figure
-      className="group relative h-[220px] w-[78%] shrink-0 snap-start overflow-hidden rounded-2xl bg-slate-100 ring-1 ring-slate-200 md:h-[260px] md:w-[420px]"
+      className="group relative h-[220px] w-[78%] shrink-0 snap-start overflow-hidden rounded-2xl bg-slate-100 ring-1 ring-slate-200 md:h-[260px] md:w-[420px] cursor-pointer"
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: i * 0.03 }}
+      onClick={() => onImageClick(imgSrc)}
     >
-      <picture>
-        <source
-          srcSet={`${srcBase}.avif`}
-          type="image/avif"
-        />
-        <source
-          srcSet={`${srcBase}.webp`}
-          type="image/webp"
-        />
-        <img
-          src={`${srcBase}.jpg`}
-          onError={onErr}
-          alt={item.title}
-          loading="lazy"
-          decoding="async"
-          className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.04]"
-        />
-      </picture>
+      <img
+        src={imgSrc}
+        onError={(e) => {
+          const target = e.currentTarget;
+          // Try alternative formats
+          if (target.src.endsWith('.jpg')) {
+            const newSrc = target.src.replace('.jpg', '.png');
+            setImgSrc(newSrc);
+            target.src = newSrc;
+          } else if (!target.dataset.failed) {
+            target.dataset.failed = 'true';
+            onErr(e);
+          }
+        }}
+        alt={item.title}
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.04]"
+      />
 
       {/* overlay + başlık */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-900/85 via-slate-900/25 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
@@ -360,6 +525,27 @@ function splitTitleLocation(raw: string): { title: string; location?: string } {
   return { title: raw.trim() };
 }
 
+function ClockIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-5 w-5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <circle
+        cx="12"
+        cy="12"
+        r="10"
+      />
+      <polyline points="12 6 12 12 16 14" />
+    </svg>
+  );
+}
 function GlobeIcon() {
   return (
     <svg
