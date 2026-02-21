@@ -258,7 +258,7 @@ export const resources = {
         addressTitle: 'Adres',
         addressLines: [
           'Ekutaş Ekşioğlu Uluslararası Ticaret İnşaat A.Ş.',
-          'Küçük Çamlıca mah. Libadiye cad. No:52 Üsküdar İstanbul, Türkiye',
+          'Fenerbahçe Mah. Bağdat Cad. No:128B Kadıköy İstanbul, Türkiye',
         ],
         phoneTitle: 'Telefon',
         phones: ['+90 850 346 46 52'],
@@ -565,7 +565,7 @@ export const resources = {
         addressTitle: 'Address',
         addressLines: [
           'Ekutaş Ekşioğlu Uluslararası Ticaret İnşaat A.Ş.',
-          'Küçük Çamlıca mah. Libadiye cad. No:52 Üsküdar İstanbul, Türkiye',
+          'Fenerbahçe Mah. Bağdat Cad. No:128B Kadıköy İstanbul, Türkiye',
         ],
         phoneTitle: 'Phone',
         phones: ['+90 850 346 46 52'],
