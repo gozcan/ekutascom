@@ -1,5 +1,6 @@
 import { useParams, Navigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useCallback } from 'react';
 import { useI18n } from '../i18n/I18nProvider';
 
 // Proje verileri - ileride translations.ts'e taşınabilir
@@ -11,7 +12,7 @@ const projectsData = {
       category: 'Konut',
       year: '2026',
       area: '4.125 m²',
-      status: 'Başlanacak',
+      status: 'Devam Ediyor',
       description:
         "Ali Şahin Apartmanı, Kozyatağı'nın nezih bir bölgesinde konumlanan 12 katlı modern konut projesidir. Toplam 24 daire içeren yapı, depreme dayanıklı betonarme taşıyıcı sistemi, enerji verimli dış cephe kaplaması ve akıllı bina sistemleriyle donatılmıştır.",
       features: [
@@ -42,6 +43,32 @@ const projectsData = {
           image: '/images/projects/ali-sahin-apartmani/floor-plan.jpg',
         },
       ],
+      timeline: [
+        {
+          date: 'Ocak 2026',
+          title: 'Proje Başlangıcı',
+          description: 'Hazırlık süreçleri tamamlandı, şantiye kurulumuna geçildi.',
+          status: 'done',
+        },
+        {
+          date: 'Şubat 2026',
+          title: 'Şantiye Çevre Kapama',
+          description: 'Şantiye alanının çevre kapama ve güvenlik bariyeri kurulumu devam ediyor.',
+          status: 'active',
+          images: [
+            '/images/projects/ali-sahin-apartmani/2.png',
+            '/images/projects/ali-sahin-apartmani/3.png',
+            '/images/projects/ali-sahin-apartmani/4.png',
+            '/images/projects/ali-sahin-apartmani/5.png',
+          ],
+        },
+        {
+          date: 'Şubat 2026',
+          title: 'Söküm İşleri',
+          description: 'Mevcut yapının söküm çalışmaları başladı, devam ediyor.',
+          status: 'active',
+        },
+      ],
     },
     en: {
       title: 'Ali Şahin Apartment',
@@ -49,7 +76,7 @@ const projectsData = {
       category: 'Residential',
       year: '2026',
       area: '4,125 m²',
-      status: 'To be started',
+      status: 'Ongoing',
       description:
         'Ali Şahin Apartment is a 12-story modern residential project located in a distinguished area of Kozyatağı. The building contains 24 apartments and is equipped with an earthquake-resistant reinforced concrete structural system, energy-efficient facade cladding, and smart building systems.',
       features: [
@@ -78,6 +105,32 @@ const projectsData = {
         {
           title: 'Normal Floor Plan',
           image: '/images/projects/ali-sahin-apartmani/floor-plan.jpg',
+        },
+      ],
+      timeline: [
+        {
+          date: 'January 2026',
+          title: 'Project Start',
+          description: 'Preliminary preparations completed, site setup initiated.',
+          status: 'done',
+        },
+        {
+          date: 'February 2026',
+          title: 'Site Enclosure',
+          description: 'Perimeter enclosure and safety barriers installation is underway.',
+          status: 'active',
+          images: [
+            '/images/projects/ali-sahin-apartmani/2.png',
+            '/images/projects/ali-sahin-apartmani/3.png',
+            '/images/projects/ali-sahin-apartmani/4.png',
+            '/images/projects/ali-sahin-apartmani/5.png',
+          ],
+        },
+        {
+          date: 'February 2026',
+          title: 'Demolition Works',
+          description: 'Dismantling works of the existing structure have started and are ongoing.',
+          status: 'active',
         },
       ],
     },
@@ -221,6 +274,21 @@ function normalizeSlug(slug: string): string {
 export default function ProjectDetail() {
   const { slug: rawSlug } = useParams<{ slug: string }>();
   const { lang } = useI18n();
+  const [lightbox, setLightbox] = useState<{ images: string[]; index: number } | null>(null);
+  const [loadedGallery, setLoadedGallery] = useState<string[]>([]);
+
+  const closeLightbox = useCallback(() => setLightbox(null), []);
+
+  useEffect(() => {
+    if (!lightbox) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') setLightbox(lb => lb && lb.index < lb.images.length - 1 ? { ...lb, index: lb.index + 1 } : lb);
+      if (e.key === 'ArrowLeft') setLightbox(lb => lb && lb.index > 0 ? { ...lb, index: lb.index - 1 } : lb);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightbox, closeLightbox]);
 
   const slug = rawSlug ? normalizeSlug(rawSlug) : null;
   const project = slug ? projectsData[slug as keyof typeof projectsData] : null;
@@ -238,6 +306,74 @@ export default function ProjectDetail() {
 
   return (
     <div className="bg-white">
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
+            onClick={closeLightbox}
+          >
+            {/* Kapat */}
+            <button
+              className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-white hover:bg-white/20 transition"
+              onClick={closeLightbox}
+              aria-label="Kapat"
+            >
+              <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Sol ok */}
+            {lightbox.index > 0 && (
+              <button
+                className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white hover:bg-white/20 transition"
+                onClick={(e) => { e.stopPropagation(); setLightbox(lb => lb ? { ...lb, index: lb.index - 1 } : lb); }}
+                aria-label="Önceki"
+              >
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+            )}
+
+            {/* Görsel */}
+            <motion.img
+              key={lightbox.index}
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              src={lightbox.images[lightbox.index]}
+              alt=""
+              className="max-h-[90vh] max-w-[90vw] rounded-xl object-contain shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+
+            {/* Sağ ok */}
+            {lightbox.index < lightbox.images.length - 1 && (
+              <button
+                className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white hover:bg-white/20 transition"
+                onClick={(e) => { e.stopPropagation(); setLightbox(lb => lb ? { ...lb, index: lb.index + 1 } : lb); }}
+                aria-label="Sonraki"
+              >
+                <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+            )}
+
+            {/* Sayaç */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 rounded-full bg-black/50 px-3 py-1 text-sm text-white">
+              {lightbox.index + 1} / {lightbox.images.length}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* Meta */}
       <title>{`${data.title} | Ekutaş`}</title>
       <meta
@@ -542,6 +678,129 @@ export default function ProjectDetail() {
         </div>
       </section>
 
+      {/* Proje Süreci / Timeline */}
+      {(data as any).timeline && (data as any).timeline.length > 0 && (
+        <section className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="font-heading text-2xl font-bold text-slate-900">
+              {lang === 'tr' ? 'Proje Süreci' : 'Project Timeline'}
+            </h2>
+            <div className="mt-3 h-1 w-16 rounded-full bg-amber-500" />
+          </motion.div>
+
+          <div className="mt-10 relative">
+            {/* Dikey çizgi */}
+            <div className="absolute left-[18px] top-0 bottom-0 w-px bg-slate-200 md:left-[calc(50%-1px)]" />
+
+            <div className="space-y-0">
+              {(data as any).timeline.map((step: any, i: number) => {
+                const isDone = step.status === 'done';
+                const isActive = step.status === 'active';
+                const isRight = i % 2 === 1;
+
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.55, delay: i * 0.07 }}
+                    className={`relative flex gap-6 pb-10 md:pb-12 ${
+                      isRight ? 'md:flex-row-reverse' : 'md:flex-row'
+                    } md:gap-0`}
+                  >
+                    {/* Nokta - mobilde sol, masaüstünde orta */}
+                    <div className="relative z-10 flex-none md:absolute md:left-1/2 md:-translate-x-1/2 md:top-1">
+                      <div
+                        className={`h-9 w-9 rounded-full border-4 border-white shadow flex items-center justify-center ${
+                          isDone
+                            ? 'bg-emerald-500'
+                            : isActive
+                            ? 'bg-amber-500'
+                            : 'bg-slate-300'
+                        }`}
+                      >
+                        {isDone ? (
+                          <svg viewBox="0 0 24 24" className="h-4 w-4 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M20 6L9 17l-5-5" />
+                          </svg>
+                        ) : isActive ? (
+                          <span className="h-2.5 w-2.5 rounded-full bg-white animate-pulse" />
+                        ) : (
+                          <span className="h-2.5 w-2.5 rounded-full bg-white/70" />
+                        )}
+                      </div>
+                    </div>
+
+                    {/* İçerik kartı - mobilde sağa, masaüstünde değişimli */}
+                    <div className={`flex-1 md:w-[calc(50%-2.5rem)] md:max-w-[calc(50%-2.5rem)] ${isRight ? 'md:mr-auto md:pr-10' : 'md:ml-auto md:pl-10'}`}>
+                      <div
+                        className={`rounded-2xl p-5 ring-1 ${
+                          isActive
+                            ? 'bg-amber-50 ring-amber-200'
+                            : isDone
+                            ? 'bg-white ring-slate-200'
+                            : 'bg-slate-50 ring-slate-200'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2 flex-wrap mb-2">
+                          <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                            {step.date}
+                          </span>
+                          {isActive && (
+                            <span className="inline-flex items-center gap-1 rounded-full bg-amber-500 px-2 py-0.5 text-xs font-medium text-white">
+                              <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
+                              {lang === 'tr' ? 'Devam Ediyor' : 'In Progress'}
+                            </span>
+                          )}
+                          {isDone && (
+                            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-medium text-emerald-700">
+                              {lang === 'tr' ? 'Tamamlandı' : 'Completed'}
+                            </span>
+                          )}
+                        </div>
+                        <h3 className="font-heading font-bold text-slate-900 text-base mb-1">
+                          {step.title}
+                        </h3>
+                        <p className="text-slate-500 text-sm leading-relaxed">
+                          {step.description}
+                        </p>
+
+                        {/* Küçük görsel önizlemeler */}
+                        {step.images && step.images.length > 0 && (
+                          <div className="mt-3 flex flex-wrap gap-2">
+                            {step.images.map((img: string, j: number) => (
+                              <button
+                                key={j}
+                                className="h-16 w-24 flex-none overflow-hidden rounded-lg bg-slate-200 cursor-zoom-in ring-0 hover:ring-2 hover:ring-amber-400 transition"
+                                onClick={() => setLightbox({ images: step.images, index: j })}
+                              >
+                                <img
+                                  src={img}
+                                  alt={`${step.title} ${j + 1}`}
+                                  loading="lazy"
+                                  className="h-full w-full object-cover"
+                                  onError={(e) => { e.currentTarget.parentElement!.style.display = 'none'; }}
+                                />
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Galeri Bölümü - Görsel yoksa gösterilmez */}
       <section className="bg-slate-50">
         <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
@@ -554,28 +813,46 @@ export default function ProjectDetail() {
             {lang === 'tr' ? 'Proje Görselleri' : 'Project Gallery'}
           </motion.h2>
           <div className="mt-3 h-1 w-16 rounded-full bg-amber-500" />
+          {slug === 'ali-sahin-apartmani' && (
+            <motion.p
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="mt-4 text-slate-500 text-sm"
+            >
+              {lang === 'tr'
+                ? 'Son güncelleme: Şantiye çevre kapama çalışmalarından görüntüler – Şubat 2026'
+                : 'Latest update: Site enclosure works – February 2026'}
+            </motion.p>
+          )}
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-slate-200"
-              >
-                <img
-                  src={`/images/projects/${slug}/${i}.png`}
-                  alt={`${data.title} - ${i}`}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  onError={(e) => {
-                    e.currentTarget.parentElement!.style.display = 'none';
-                  }}
-                />
-              </motion.div>
-            ))}
+            {[1, 2, 3, 4, 5, 6].map((i) => {
+              const src = `/images/projects/${slug}/${i}.png`;
+              return (
+                <motion.button
+                  key={i}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                  className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-slate-200 cursor-zoom-in text-left"
+                  onClick={() => setLightbox({ images: loadedGallery, index: loadedGallery.indexOf(src) })}
+                >
+                  <img
+                    src={src}
+                    alt={`${data.title} - ${i}`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    onLoad={() => setLoadedGallery(prev => prev.includes(src) ? prev : [...prev, src])}
+                    onError={(e) => {
+                      e.currentTarget.parentElement!.style.display = 'none';
+                    }}
+                  />
+                </motion.button>
+              );
+            })}
           </div>
         </div>
       </section>
