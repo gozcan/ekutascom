@@ -53,8 +53,8 @@ const projectsData = {
         {
           date: 'Şubat 2026',
           title: 'Şantiye Çevre Kapama',
-          description: 'Şantiye alanının çevre kapama ve güvenlik bariyeri kurulumu devam ediyor.',
-          status: 'active',
+          description: 'Şantiye alanının çevre kapama ve güvenlik bariyeri kurulumu tamamlandı.',
+          status: 'done',
           images: [
             '/images/projects/ali-sahin-apartmani/2.png',
             '/images/projects/ali-sahin-apartmani/3.png',
@@ -117,8 +117,8 @@ const projectsData = {
         {
           date: 'February 2026',
           title: 'Site Enclosure',
-          description: 'Perimeter enclosure and safety barriers installation is underway.',
-          status: 'active',
+          description: 'Perimeter enclosure and safety barriers installation completed.',
+          status: 'done',
           images: [
             '/images/projects/ali-sahin-apartmani/2.png',
             '/images/projects/ali-sahin-apartmani/3.png',
