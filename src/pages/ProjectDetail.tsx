@@ -65,8 +65,8 @@ const projectsData = {
         {
           date: 'Şubat 2026',
           title: 'Söküm İşleri',
-          description: 'Mevcut yapının söküm çalışmaları başladı, devam ediyor.',
-          status: 'active',
+          description: 'Mevcut yapının söküm işlemleri tamamlandı.',
+          status: 'done',
         },
       ],
     },
@@ -129,8 +129,8 @@ const projectsData = {
         {
           date: 'February 2026',
           title: 'Demolition Works',
-          description: 'Dismantling works of the existing structure have started and are ongoing.',
-          status: 'active',
+          description: 'Demolition works of the existing structure have been completed.',
+          status: 'done',
         },
       ],
     },
