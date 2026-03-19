@@ -2,7 +2,7 @@ export type Lang = 'tr' | 'en';
 
 export const resources = {
   tr: {
-    brand: 'Ekutaş Ekşioğlu Uluslararası Ticaret İnşaat A.Ş.',
+    brand: 'Ekutaş Ekşioğlu Uluslararası İnşaat A.Ş.',
     nav: {
       home: 'Ana Sayfa',
       about: 'Hakkımızda',
@@ -136,7 +136,7 @@ export const resources = {
     about: {
       heroTitle: 'Hakkımızda',
       heroSubtitle:
-        'Ekutaş Ekşioğlu Uluslararası Ticaret İnşaat A.Ş. – Güvenden Yapılar Yükselir.',
+        'Ekutaş Ekşioğlu Uluslararası İnşaat A.Ş. – Güvenden Yapılar Yükselir.',
       who: {
         title: 'Biz Kimiz?',
         paragraphs: [
@@ -257,7 +257,7 @@ export const resources = {
         title: 'İletişim Bilgileri',
         addressTitle: 'Adres',
         addressLines: [
-          'Ekutaş Ekşioğlu Uluslararası Ticaret İnşaat A.Ş.',
+          'Ekutaş Ekşioğlu Uluslararası İnşaat A.Ş.',
           'Fenerbahçe Mah. Bağdat Cad. No:128B Kadıköy İstanbul, Türkiye',
         ],
         phoneTitle: 'Telefon',
@@ -444,7 +444,7 @@ export const resources = {
     about: {
       heroTitle: 'About Us',
       heroSubtitle:
-        'Ekutaş Eksioglu International Trade & Construction Inc. — Structures Rise on Trust.',
+        'Ekutaş Ekşioğlu Uluslararası İnşaat A.Ş. — Structures Rise on Trust.',
       who: {
         title: 'Who We Are',
         paragraphs: [
@@ -564,7 +564,7 @@ export const resources = {
         title: 'Contact Details',
         addressTitle: 'Address',
         addressLines: [
-          'Ekutaş Ekşioğlu Uluslararası Ticaret İnşaat A.Ş.',
+          'Ekutaş Ekşioğlu Uluslararası İnşaat A.Ş.',
           'Fenerbahçe Mah. Bağdat Cad. No:128B Kadıköy İstanbul, Türkiye',
         ],
         phoneTitle: 'Phone',

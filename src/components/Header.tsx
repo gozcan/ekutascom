@@ -153,7 +153,7 @@ export default function Header() {
                 loading="eager"
               />
               <p className="font-light text-center text-[9pt] text-slate-600">
-                | Ekutaş Ekşioğlu Uluslararası Ticaret İnşaat A.Ş.
+                  | Ekutaş Ekşioğlu Uluslararası İnşaat A.Ş.
               </p>
             </Link>
 
