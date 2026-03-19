@@ -52,6 +52,18 @@ const projectsData = {
         },
         {
           date: 'Şubat 2026',
+          title: 'Avan Proje Onayı',
+          description: 'Ali Şahin Apartmanı için avan proje onaylandı.',
+          status: 'done',
+        },
+        {
+          date: 'Şubat 2026',
+          title: 'Yıkım Ruhsatı Başvurusu',
+          description: 'Ali Şahin Apartmanı için yıkım ruhsatı başvurusu yapıldı.',
+          status: 'done',
+        },
+        {
+          date: 'Şubat 2026',
           title: 'Şantiye Çevre Kapama',
           description: 'Şantiye alanının çevre kapama ve güvenlik bariyeri kurulumu tamamlandı.',
           status: 'done',
@@ -112,6 +124,18 @@ const projectsData = {
           date: 'January 2026',
           title: 'Project Start',
           description: 'Preliminary preparations completed, site setup initiated.',
+          status: 'done',
+        },
+        {
+          date: 'February 2026',
+          title: 'Preliminary Design Approval',
+          description: 'The preliminary design for Ali Sahin Apartment was approved.',
+          status: 'done',
+        },
+        {
+          date: 'February 2026',
+          title: 'Demolition Permit Application',
+          description: 'The demolition permit application for Ali Sahin Apartment was submitted.',
           status: 'done',
         },
         {
