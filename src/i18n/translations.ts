@@ -286,7 +286,7 @@ export const resources = {
       domesticTitle: 'Yurtiçi projeler',
       galleryTitle: 'Galeri',
       ongoing: [
-        'Ali Şahin Apartmanı (Söküm işlemleri tamamlandı) – Kozyatağı',
+        'Ali Şahin Apartmanı – Kozyatağı',
         'Doğan Apartmanı – Kısıklı',
         'Köşem Apartmanı – Bahçelievler',
       ],
@@ -606,7 +606,7 @@ export const resources = {
       galleryTitle: 'Gallery',
 
       ongoing: [
-        'Ali Şahin Apartment (Demolition completed) – Kozyatağı',
+        'Ali Şahin Apartment – Kozyatağı',
         'Doğan Apartment – Kısıklı',
         'Köşem Apartment – Bahçelievler',
       ],
