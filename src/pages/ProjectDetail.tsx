@@ -80,6 +80,21 @@ const projectsData = {
           description: 'Ali Şahin Apartmanı için yıkım ruhsatı başvurusu yapıldı.',
           status: 'done',
         },
+        {
+          date: 'Nisan 2026',
+          title: 'Yıkım Güvenlik Kat Perdesi',
+          description:
+            'Ali Şahin Apartmanı için yıkım güvenliği amacıyla kat perdesi kuruldu.',
+          status: 'done',
+          images: [
+            '/images/projects/ali-sahin-apartmani/6.jpeg',
+            '/images/projects/ali-sahin-apartmani/7.jpeg',
+            '/images/projects/ali-sahin-apartmani/8.jpeg',
+            '/images/projects/ali-sahin-apartmani/9.jpeg',
+            '/images/projects/ali-sahin-apartmani/10.jpeg',
+            '/images/projects/ali-sahin-apartmani/11.jpeg',
+          ],
+        },
       ],
     },
     en: {
@@ -155,6 +170,21 @@ const projectsData = {
           title: 'Demolition Permit Application',
           description: 'The demolition permit application for Ali Sahin Apartment was submitted.',
           status: 'done',
+        },
+        {
+          date: 'April 2026',
+          title: 'Demolition Safety Screen Installation',
+          description:
+            'A floor safety screen was installed for demolition safety at Ali Sahin Apartment.',
+          status: 'done',
+          images: [
+            '/images/projects/ali-sahin-apartmani/6.jpeg',
+            '/images/projects/ali-sahin-apartmani/7.jpeg',
+            '/images/projects/ali-sahin-apartmani/8.jpeg',
+            '/images/projects/ali-sahin-apartmani/9.jpeg',
+            '/images/projects/ali-sahin-apartmani/10.jpeg',
+            '/images/projects/ali-sahin-apartmani/11.jpeg',
+          ],
         },
       ],
     },
