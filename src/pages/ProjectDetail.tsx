@@ -358,6 +358,22 @@ export default function ProjectDetail() {
 
   const slug = rawSlug ? normalizeSlug(rawSlug) : null;
   const project = slug ? projectsData[slug as keyof typeof projectsData] : null;
+  const galleryImages =
+    slug === 'ali-sahin-apartmani'
+      ? [
+          '/images/projects/ali-sahin-apartmani/1.png',
+          '/images/projects/ali-sahin-apartmani/2.png',
+          '/images/projects/ali-sahin-apartmani/3.png',
+          '/images/projects/ali-sahin-apartmani/4.png',
+          '/images/projects/ali-sahin-apartmani/5.png',
+          '/images/projects/ali-sahin-apartmani/6.jpeg',
+          '/images/projects/ali-sahin-apartmani/7.jpeg',
+          '/images/projects/ali-sahin-apartmani/8.jpeg',
+          '/images/projects/ali-sahin-apartmani/9.jpeg',
+          '/images/projects/ali-sahin-apartmani/10.jpeg',
+          '/images/projects/ali-sahin-apartmani/11.jpeg',
+        ]
+      : [1, 2, 3, 4, 5, 6].map((i) => `/images/projects/${slug}/${i}.png`);
 
   if (!project) {
     return (
@@ -888,27 +904,26 @@ export default function ProjectDetail() {
               className="mt-4 text-slate-500 text-sm"
             >
               {lang === 'tr'
-                ? 'Son güncelleme: Şantiye çevre kapama çalışmalarından görüntüler – Şubat 2026'
-                : 'Latest update: Site enclosure works – February 2026'}
+                ? 'Son güncelleme: Yıkım güvenlik kat perdesi kurulumu – Nisan 2026'
+                : 'Latest update: Demolition safety screen installation – April 2026'}
             </motion.p>
           )}
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[1, 2, 3, 4, 5, 6].map((i) => {
-              const src = `/images/projects/${slug}/${i}.png`;
+            {galleryImages.map((src, i) => {
               return (
                 <motion.button
-                  key={i}
+                  key={src}
                   initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                  transition={{ duration: 0.5, delay: (i + 1) * 0.05 }}
                   className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-slate-200 cursor-zoom-in text-left"
                   onClick={() => setLightbox({ images: loadedGallery, index: loadedGallery.indexOf(src) })}
                 >
                   <img
                     src={src}
-                    alt={`${data.title} - ${i}`}
+                    alt={`${data.title} - ${i + 1}`}
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     onLoad={() => setLoadedGallery(prev => prev.includes(src) ? prev : [...prev, src])}
