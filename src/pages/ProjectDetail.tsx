@@ -95,6 +95,12 @@ const projectsData = {
             '/images/projects/ali-sahin-apartmani/11.jpeg',
           ],
         },
+        {
+          date: 'Nisan 2026',
+          title: 'Yıkım Ruhsatı',
+          description: 'Ali Şahin Apartmanı için yıkım ruhsatı çıktı.',
+          status: 'done',
+        },
       ],
     },
     en: {
@@ -185,6 +191,12 @@ const projectsData = {
             '/images/projects/ali-sahin-apartmani/10.jpeg',
             '/images/projects/ali-sahin-apartmani/11.jpeg',
           ],
+        },
+        {
+          date: 'April 2026',
+          title: 'Demolition Permit Issued',
+          description: 'The demolition permit for Ali Sahin Apartment was issued.',
+          status: 'done',
         },
       ],
     },
