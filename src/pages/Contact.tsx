@@ -57,17 +57,22 @@ export default function Contact() {
   const formT = data.form || ({} as ContactInfo['form']);
   const infoT = data.info;
 
-  // Basit UI-state (submit simülasyonu)
-  const [status, setStatus] = useState<'idle' | 'ok' | 'err'>('idle');
+  // UI-state
+  const [status, setStatus] = useState<'idle' | 'ok' | 'err' | 'sending'>(
+    'idle'
+  );
   const [msg, setMsg] = useState<string | null>(null);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const formEl = e.currentTarget;
+    const fd = new FormData(formEl);
     const name = String(fd.get('name') || '').trim();
     const email = String(fd.get('email') || '').trim();
+    const phone = String(fd.get('phone') || '').trim();
     const subject = String(fd.get('subject') || '').trim();
     const message = String(fd.get('message') || '').trim();
+    const company = String(fd.get('company') || ''); // honeypot
 
     const requiredMsg = formT.validations?.required || '';
     const emailMsg = formT.validations?.email || '';
@@ -83,10 +88,40 @@ export default function Contact() {
       setMsg(emailMsg);
       return;
     }
-    // Simüle başarı
-    setStatus('ok');
-    setMsg(formT.success || '');
-    e.currentTarget.reset();
+
+    try {
+      setStatus('sending');
+      setMsg(null);
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          subject,
+          message,
+          company,
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        error?: string;
+      };
+
+      if (!res.ok || !data.ok) {
+        setStatus('err');
+        setMsg(data.error || formT.error || 'Mesaj gönderilemedi.');
+        return;
+      }
+
+      setStatus('ok');
+      setMsg(formT.success || '');
+      formEl.reset();
+    } catch {
+      setStatus('err');
+      setMsg(formT.error || 'Mesaj gönderilemedi. Lütfen tekrar deneyin.');
+    }
   }
 
   return (
@@ -152,7 +187,31 @@ export default function Contact() {
             <form
               onSubmit={onSubmit}
               className="mt-6 space-y-4"
+              noValidate
             >
+              {/* Honeypot — botlar için gizli alan */}
+              <div
+                aria-hidden="true"
+                style={{
+                  position: 'absolute',
+                  left: '-10000px',
+                  top: 'auto',
+                  width: 1,
+                  height: 1,
+                  overflow: 'hidden',
+                }}
+              >
+                <label>
+                  Şirket (boş bırakın)
+                  <input
+                    type="text"
+                    name="company"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </label>
+              </div>
+
               <div className="grid gap-4 md:grid-cols-2">
                 <Field
                   id="name"
@@ -198,15 +257,16 @@ export default function Contact() {
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-2 rounded-md border border-amber-300 bg-white px-5 py-2.5 text-amber-800 font-medium hover:bg-amber-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/40 transition"
+                  disabled={status === 'sending'}
+                  className="inline-flex items-center gap-2 rounded-md border border-amber-300 bg-white px-5 py-2.5 text-amber-800 font-medium hover:bg-amber-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-500/40 transition disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  <SendIcon />
+                  {status === 'sending' ? <SpinnerIcon /> : <SendIcon />}
                   {t('contact.form.submit')}
                 </button>
               </div>
 
               {/* durum mesajı */}
-              {status !== 'idle' && msg ? (
+              {status !== 'idle' && status !== 'sending' && msg ? (
                 <div
                   className={`mt-2 rounded-md border px-3 py-2 text-sm ${
                     status === 'ok'
@@ -214,6 +274,7 @@ export default function Contact() {
                       : 'border-rose-200 bg-rose-50 text-rose-800'
                   }`}
                   role="status"
+                  aria-live="polite"
                 >
                   {msg}
                 </div>
@@ -403,6 +464,31 @@ function SendIcon() {
     >
       <path d="M22 2L11 13" />
       <path d="M22 2L15 22l-4-9-9-4 20-7z" />
+    </svg>
+  );
+}
+function SpinnerIcon() {
+  return (
+    <svg
+      className="h-4 w-4 animate-spin"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="3"
+        opacity="0.25"
+      />
+      <path
+        d="M22 12a10 10 0 0 1-10 10"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
