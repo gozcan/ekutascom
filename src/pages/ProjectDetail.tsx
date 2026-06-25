@@ -105,7 +105,7 @@ const projectsData = {
           date: 'Mayıs 2026',
           title: 'Yıkım Çalışmaları Başladı',
           description: 'Ali Şahin Apartmanı sahasında kontrollü yıkım çalışmaları başladı.',
-          status: 'active',
+          status: 'done',
           images: [
             '/images/projects/ali-sahin-apartmani/12.jpeg',
             '/images/projects/ali-sahin-apartmani/13.jpeg',
@@ -113,6 +113,16 @@ const projectsData = {
             '/images/projects/ali-sahin-apartmani/15.jpeg',
             '/images/projects/ali-sahin-apartmani/16.jpeg',
             '/images/projects/ali-sahin-apartmani/17.jpeg',
+          ],
+        },
+        {
+          date: 'Haziran 2026',
+          title: 'Yıkım Tamamlandı',
+          description: 'Ali Şahin Apartmanı sahasındaki yıkım çalışmaları tamamlandı.',
+          status: 'done',
+          images: [
+            '/images/projects/ali-sahin-apartmani/18.jpeg',
+            '/images/projects/ali-sahin-apartmani/19.jpeg',
           ],
         },
       ],
@@ -216,7 +226,7 @@ const projectsData = {
           date: 'May 2026',
           title: 'Demolition Works Started',
           description: 'Controlled demolition works have started at the Ali Sahin Apartment site.',
-          status: 'active',
+          status: 'done',
           images: [
             '/images/projects/ali-sahin-apartmani/12.jpeg',
             '/images/projects/ali-sahin-apartmani/13.jpeg',
@@ -224,6 +234,16 @@ const projectsData = {
             '/images/projects/ali-sahin-apartmani/15.jpeg',
             '/images/projects/ali-sahin-apartmani/16.jpeg',
             '/images/projects/ali-sahin-apartmani/17.jpeg',
+          ],
+        },
+        {
+          date: 'June 2026',
+          title: 'Demolition Completed',
+          description: 'Demolition works at the Ali Sahin Apartment site have been completed.',
+          status: 'done',
+          images: [
+            '/images/projects/ali-sahin-apartmani/18.jpeg',
+            '/images/projects/ali-sahin-apartmani/19.jpeg',
           ],
         },
       ],
@@ -406,6 +426,8 @@ export default function ProjectDetail() {
           '/images/projects/ali-sahin-apartmani/15.jpeg',
           '/images/projects/ali-sahin-apartmani/16.jpeg',
           '/images/projects/ali-sahin-apartmani/17.jpeg',
+          '/images/projects/ali-sahin-apartmani/18.jpeg',
+          '/images/projects/ali-sahin-apartmani/19.jpeg',
         ]
       : [1, 2, 3, 4, 5, 6].map((i) => `/images/projects/${slug}/${i}.png`);
 
@@ -938,8 +960,8 @@ export default function ProjectDetail() {
               className="mt-4 text-slate-500 text-sm"
             >
               {lang === 'tr'
-                ? 'Son güncelleme: Yıkım çalışmaları başladı – Mayıs 2026'
-                : 'Latest update: Demolition works started – May 2026'}
+                ? 'Son güncelleme: Yıkım tamamlandı – Haziran 2026'
+                : 'Latest update: Demolition completed – June 2026'}
             </motion.p>
           )}
 
